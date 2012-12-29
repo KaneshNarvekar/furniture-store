@@ -10,40 +10,53 @@ body
     position: absolute;
     left: 50%;
     margin-left: -500px;
-    border: solid 1px;
 }
 
-#nav
+#navPanel
 {
-    width: 900px;
-    height: 80px;
-    margin: 0px auto;
-    border: solid 1px;
+    width: 750px;
+    height: 50px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#nav ul
+#navPanel ul
 {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-#nav li
+#navPanel li
 {
     padding: 0px;
     margin: 0;
     float: left;
 }
 
-#nav li a
+#navPanel li a
 {
     display: block;
     width: 150px;
-    height: 60px;
-    line-height: 60px;
-    background-image: url(images/button2.jpg);
+    height: 51px;
+    line-height: 51px;
+    background-image: url(images/buttonW150xH51.jpg);
+    background-repeat: no-repeat;
     text-align: center;
     text-decoration: none;
-    color: white;
+    color: black;
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: smaller;
+}
+
+#centerPanel
+{
+    width: 750px;
+    height: 338px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 

@@ -14,8 +14,8 @@ body
 
 #navPanel
 {
-    width: 750px;
-    height: 50px;
+    width: 800px;
+    height: 51px;
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
@@ -41,8 +41,6 @@ body
     width: 150px;
     height: 51px;
     line-height: 51px;
-    background-image: url(images/buttonW150xH51.jpg);
-    background-repeat: no-repeat;
     text-align: center;
     text-decoration: none;
     color: black;
@@ -51,12 +49,85 @@ body
     font-size: smaller;
 }
 
-#centerPanel
+.midNav
 {
-    width: 750px;
-    height: 338px;
+    background-image: url(images/buttonW150xH51.jpg);
+    background-repeat: no-repeat;
+}
+
+.endNav
+{
+    background-image: url(images/endButtonW150xH51.jpg);
+    background-repeat: no-repeat;
+}
+
+#mainPanel
+{
+    width: 800px;
+    height: 366px;
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
 }
 
+#imgSlides
+{
+    width: 650px;
+    height: 366px;
+    float: left;
+}
+
+#imgSlides .imgFirst { display: block; }
+#imgSlides img { display: none; }
+
+#imgThumbs 
+{
+    padding: 0;
+    margin: 0;
+    width: 140px;
+    height: 350px;
+    float: right;
+}
+
+#imgThumbs li
+{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#imgThumbs li a
+{
+    display: block;
+    width: 140px;
+    height: 70.8px;
+    background-color: #1f1a17;
+    text-align: center;
+    text-decoration: none;
+}
+
+.middleThumb
+{
+    margin: 3px 0;
+}
+
+#imgThumbs img
+{
+    margin-top: 2.9px;
+}
+
+#imgThumbs li.activeSlide a 
+{ 
+    background-color: #e14d0f;
+    
+}
+
+#imgThumbs a:focus 
+{ 
+    outline: none; 
+}
+
+#imgThumbs a:hover 
+{ 
+    background-color: #e14d0f; 
+}

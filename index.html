@@ -1,9 +1,34 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Dava's Shop</title>
+        <title>DAVA</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <style type="text/css">  @import url(css/style.css);  </style>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        
+        <script type="text/javascript" src="javascript/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="javascript/jquery.cycle.all.js"></script>
+        <script type="text/javascript" src="javascript/jquery.easing.1.3.js"></script>
+        
+        <script type="text/javascript">
+            $(document).ready(
+                function()
+                {
+                    $('#imgSlides').cycle(
+                        {
+                            fx:     'fade',
+                            speed:  'slow',
+                            timeout: 4000,
+                            pager:  '#imgThumbs',
+                            pagerAnchorBuilder: function(idx, slide) 
+                            {
+                                // return sel string for existing anchor
+                                return '#imgThumbs li:eq(' + (idx) + ') a';
+                            }
+                        }
+                    );       
+                }
+            )
+        </script>
     </head>
     <body>
         <div id="container">
@@ -11,19 +36,38 @@
             <div id="navPanel">
                 <ul>
                     <li><img src="css/images/logoW150xH51.jpg" alt="navLogo"/></li>
-                    <li><a href="">HOME</a></li>
-                    <li><a href="">MENS</a></li>
-                    <li><a href="">WOMENS</a></li>
-                    <li><a href="">CONTACT</a></li>
+                    <li class="midNav"><a href="">HOME</a></li>
+                    <li class="midNav"><a href="">MENS</a></li>
+                    <li class="midNav"><a href="">WOMENS</a></li>
+                    <li class="endNav"><a href="">CONTACT</a></li>
+                    <li><img src="css/images/endLogoW50xH51.jpg" alt="navEndLogo"/></li>
                 </ul>
             </div>
             
-            <div id="centerPanel">
-                <img src="css/images/imgCenterW750xH422.jpg" alt="centerImage"/>
+            <div id="mainPanel">
+                
+                <div id="imgSlides">
+                    <img class="imgFirst" src="css/images/imgCenter1W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+                    <img class="imgFirst" src="css/images/imgCenter2W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+                    <img class="imgFirst" src="css/images/imgCenter3W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+                    <img class="imgFirst" src="css/images/imgCenter4W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+                    <img class="imgFirst" src="css/images/imgCenter5W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+                </div>
+                
+                <ul id="imgThumbs">
+                    <li><a href="#"><img src="css/images/imgThumb1W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
+                    <li><a class="middleThumb" href="#"><img src="css/images/imgThumb2W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
+                    <li><a class="middleThumb" href="#"><img src="css/images/imgThumb3W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
+                    <li><a class="middleThumb" href="#"><img src="css/images/imgThumb4W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
+                    <li><a href="#"><img src="css/images/imgThumb5W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
+                </ul>
+                    
             </div>
             
             
             
-        </div> 
+            
+            
+        </div> <!--    end of container   -->
     </body>
 </html>

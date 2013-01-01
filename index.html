@@ -17,12 +17,12 @@
                         {
                             fx:     'fade',
                             speed:  'slow',
-                            timeout: 4000,
-                            pager:  '#imgThumbs',
+                            timeout: 0,
+                            pager:  '#ulThumbs',
                             pagerAnchorBuilder: function(idx, slide) 
                             {
                                 // return sel string for existing anchor
-                                return '#imgThumbs li:eq(' + (idx) + ') a';
+                                return '#ulThumbs li:eq(' + (idx) + ') a';
                             }
                         }
                     );       
@@ -45,7 +45,6 @@
             </div>
             
             <div id="mainPanel">
-                
                 <div id="imgSlides">
                     <img class="imgFirst" src="css/images/imgCenter1W650xH366.jpg" width="650" height="366" alt="centerImage"/>
                     <img class="imgFirst" src="css/images/imgCenter2W650xH366.jpg" width="650" height="366" alt="centerImage"/>
@@ -54,17 +53,39 @@
                     <img class="imgFirst" src="css/images/imgCenter5W650xH366.jpg" width="650" height="366" alt="centerImage"/>
                 </div>
                 
-                <ul id="imgThumbs">
+                <ul id="ulThumbs">
                     <li><a href="#"><img src="css/images/imgThumb1W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
                     <li><a class="middleThumb" href="#"><img src="css/images/imgThumb2W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
                     <li><a class="middleThumb" href="#"><img src="css/images/imgThumb3W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
                     <li><a class="middleThumb" href="#"><img src="css/images/imgThumb4W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
                     <li><a href="#"><img src="css/images/imgThumb5W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
                 </ul>
-                    
             </div>
             
+            <div id="infoPanel">
+                <div id="window1">
+                    <img src="css/images/mapW300xH200.jpg" alt="mapImage"/>
+                </div> 
+                <div id="window2">
+                    <p>
+                        
+                    </p>
+                </div>
+            </div> 
             
+            <div id="footer">
+                <p>
+                    Page Last Updated: December 31, 2012
+                    &#124;
+                    <a href="#">Page Editor: Davaasuren Dorjdagva</a>
+                    &#124;
+                    <a href="#">Terms of Use</a>
+                    &#124;
+                    <a href="#">Privacy Policy</a>
+                    &#124;
+                    &copy;2013 DAVA.
+                </p>
+            </div>
             
             
             

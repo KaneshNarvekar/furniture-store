@@ -12,11 +12,42 @@ body
     margin-left: -500px;
 }
 
+#headerPanel
+{
+    position: relative;
+    width: 800px;
+    height: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#headerPanel p
+{
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+    margin: 0;
+    font-family: Verdana;
+    font-size: 11px;
+}
+
+#headerPanel a
+{
+    text-decoration: none;
+}
+
+#headerPanel a:hover
+{
+    color: #e14d0f;
+    text-decoration: underline;
+}
+
+
 #navPanel
 {
     width: 800px;
     height: 51px;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -138,7 +169,7 @@ body
     width: 300px;
     height: 200px;
     float: left;
-    background-color: #1f1611;
+    background: url(images/mapW300xH200.jpg);
 }
 
 #window2
@@ -146,35 +177,65 @@ body
     width: 500px;
     height: 200px;
     float: left;
-    background-color: #9e4018;
+    background-color: #e14d0f;
+}
+
+#infoPane2
+{
+    width: 800px;
+    height: 170px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+}
+#infoPane2 h4
+{
+    padding: 20px 10px 5px;
+    margin: 0;
+    color: white;
+    font-family: Verdana;
+}
+
+#infoPane2 .orange
+{
+    color: #e14d0f;
+    font-family: Broadway;
+}
+
+#infoPane2 p 
+{
+    padding: 0px 10px 5px;
+    margin: 0px;
+    font-size: 10px;
+    font-family: Verdana;
+    color: white;
 }
 
 #footer
 {
     position: relative;
     width: 800px;
-    height: 200px;
-    margin-top: 10px;
+    height: 15px;
+    margin-top: 5px;
     margin-left: auto;
     margin-right: auto;
-    background-color: #1f1611;
 }
 
 #footer p
 {
     position: absolute;
-    bottom: 0;
+    bottom: 2px;
     left: 5px;
     margin: 0;
     font-size: 10px;
-    font-family: Verdana;
-    color: white;
+    font-family: Verdana; 
 }
 
 #footer a
 {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 #footer a:hover

@@ -34,6 +34,7 @@ body
 #headerPanel a
 {
     text-decoration: none;
+    color: black;
 }
 
 #headerPanel a:hover
@@ -41,7 +42,6 @@ body
     color: #e14d0f;
     text-decoration: underline;
 }
-
 
 #navPanel
 {
@@ -64,12 +64,28 @@ body
     float: left;
 }
 
-#navPanel li a
+#navPanel li .logo
+{
+    display: block;
+    width: 150px;
+    height: 51px;
+    background: url(images/logoW150xH102.jpg) bottom;
+    background-repeat: no-repeat;
+}
+
+#navPanel li .logo:hover
+{
+    background-position: top;
+}
+
+#navPanel li .button
 {
     display: block;
     width: 150px;
     height: 51px;
     line-height: 51px;
+    background: url(images/ButtonBGW300xH102.jpg) bottom;
+    background-repeat: no-repeat;
     text-align: center;
     text-decoration: none;
     color: black;
@@ -78,16 +94,51 @@ body
     font-size: smaller;
 }
 
-.midNav
+#navPanel li a:hover
 {
-    background-image: url(images/buttonW150xH51.jpg);
+    background-position: top;
+    color: white;
+} 
+
+.txtNav
+{
+    width: 150px;
+    height: 51px;
+    background-image: url(images/txtBackgroundW150xH51.jpg);
     background-repeat: no-repeat;
+    text-align: center;
+    line-height: 51px;
 }
 
-.endNav
+#navPanel input[type="text"]
 {
-    background-image: url(images/endButtonW150xH51.jpg);
+    width: 140px;
+    padding: 0;
+    margin: 0;
+}
+
+.searchNav
+{
+    width: 50px;
+    height: 51px;
+    background: black;
+    text-align: center;
+}
+
+#navPanel input[type="submit"]
+{
+    width: 27px;
+    height: 27px;
+    border: 0;
+    background: url(images/searchLogoW27xH54.jpg) bottom;
     background-repeat: no-repeat;
+    padding: 0;
+    margin-top: 12px;
+}
+
+#navPanel input[type="submit"]:hover
+{
+    background-position: top;
 }
 
 #mainPanel
@@ -137,6 +188,7 @@ body
 #ulThumbs img
 {
     margin-top: 2.9px;
+    border: 0;
 }
 
 #ulThumbs li.activeSlide a 

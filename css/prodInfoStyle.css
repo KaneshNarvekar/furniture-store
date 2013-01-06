@@ -1,0 +1,55 @@
+#prodImage 
+{ 
+    width: 450px;
+    height: 530px;
+    float: left;
+    border: solid 3px;
+    border-color: black;
+    background-color: white;
+}
+
+#prodImage h2
+{
+    margin-left: 20px;
+    font-family: helvetica, arial, sans-serif; 
+}
+
+#prodImage img
+{
+    width: 450px;
+    height: 450px;
+    border: 0;
+}
+
+#prodDesc
+{
+    width: 328px;
+    height: 530px;
+    float: right;
+    border: solid 3px;
+    border-color: lightgrey;
+}
+
+#prodDesc h2, p
+{
+    padding: 5px;
+    font-family: helvetica, arial, sans-serif;
+}
+
+#prodDesc p
+{
+    font-size: 13px;
+}
+
+#notFound
+{
+    width: 790px;
+    height: 100px;
+    border: solid 5px;
+    border-color: black;
+    background-color: white;
+    font-family: verdana;
+    font-size: 15px;
+    font-weight: bold;
+    color: red;
+}

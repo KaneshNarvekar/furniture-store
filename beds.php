@@ -4,31 +4,10 @@
         <title>Beds &#124; DAVA</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="css/productStyle.css"/>
+        <link rel="stylesheet" type="text/css" href="css/pagination.css"/>
+	<link rel="stylesheet" type="text/css" href="css/grey.css"/>
         
-        <script type="text/javascript" src="javascript/jquery-1.8.3.min.js"></script>
-        <script type="text/javascript" src="javascript/jquery.cycle.all.js"></script>
-        <script type="text/javascript" src="javascript/jquery.easing.1.3.js"></script>
-        
-        <script type="text/javascript">
-            $(document).ready(
-                function()
-                {
-                    $('#imgSlides').cycle(
-                        {
-                            fx:     'fade',
-                            speed:  'slow',
-                            timeout: 0,
-                            pager:  '#ulThumbs',
-                            pagerAnchorBuilder: function(idx, slide) 
-                            {
-                                // return sel string for existing anchor
-                                return '#ulThumbs li:eq(' + (idx) + ') a';
-                            }
-                        }
-                    );       
-                }
-            )
-        </script>
     </head>
     <body>
         <div id="container">
@@ -45,54 +24,70 @@
             <div id="navPanel">
                 <ul>
                     <li><a class="logo" href="index.html"></a></li>
-                    <li><a class="button" href="beds.php">BEDS</a></li>
                     <li><a class="button" href="chairs.php">CHAIRS</a></li>
                     <li><a class="button" href="chests.php">CHESTS</a></li>
+                    <li><a class="button" href="beds.php">BEDS</a></li>
                     <li class="txtNav"><input type="text" name="txtSearch"/></li>
                     <li class="searchNav"><input type="submit" name="btnSearch" value=""/></li>
                 </ul>
             </div>
             </form>
-            <div id="mainPanel">
-                <div id="imgSlides">
-                    <img class="imgFirst" src="css/images/imgCenter1W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-                    <img class="imgFirst" src="css/images/imgCenter2W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-                    <img class="imgFirst" src="css/images/imgCenter3W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-                    <img class="imgFirst" src="css/images/imgCenter4W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-                    <img class="imgFirst" src="css/images/imgCenter5W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+            
+            <div id="productPanel">
+                
+                <div class="prodImages">
+                    <img src="css/images/beds/imgBed1W300xH439.jpg" alt="Bed images"/>
                 </div>
                 
-                <ul id="ulThumbs">
-                    <li><a href="#"><img src="css/images/imgThumb1W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
-                    <li><a class="middleThumb" href="#"><img src="css/images/imgThumb2W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
-                    <li><a class="middleThumb" href="#"><img src="css/images/imgThumb3W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
-                    <li><a class="middleThumb" href="#"><img src="css/images/imgThumb4W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
-                    <li><a href="#"><img src="css/images/imgThumb5W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
-                </ul>
-            </div>
-            
-            <div id="infoPanel">
-                <div id="window1"></div> 
-                <div id="window2">
-                    <p>
-                        
-                    </p>
+                <table id="productTable">
+                    <?php
+                    include_once ("connect.php");
+                    include_once ("function.php");
+
+                    $page = (int) (!isset($_GET["page"]) ? 1 : $_GET["page"]);
+                    $limit = 9;
+                    $startpoint = ($page * $limit) - $limit;
+                    $statement = "FROM products where type=\"bed\"";
+                    $query = "SELECT * FROM products where type = \"bed\" LIMIT {$startpoint} , {$limit}";
+                    $resultSet = mysql_query($query);
+                    if (!$resultSet) die("<ERROR: Cannot execute $query>");
+                    $fetchedRow = mysql_fetch_row($resultSet);
+
+                    for ($rowNumber = 0; $rowNumber < 3; $rowNumber++)
+                    {
+                        echo "<tr>";
+                        for ($columnNumber = 0; $columnNumber < 3; $columnNumber++)
+                        {
+                            if ($fetchedRow == null) 
+                            {
+                                echo "<td></td>";
+                            }
+                            else
+                            {
+                                $id = $fetchedRow[0];
+                                $name = $fetchedRow[1];
+                                $imageName = $fetchedRow[2];
+                                $price = $fetchedRow[5];
+                                $displayImage = "<img src=\"css/images/beds/$imageName\" alt=\"tableImage\"/>";
+                                echo " <td><a href=\"prodId=$id\"> $displayImage <p>$name <span class=\"price\">£$price</span></p></a></td> ";
+                                $fetchedRow = mysql_fetch_row($resultSet);
+                            }
+                        }
+                        echo "</tr>";
+                    }
+                    ?>    
+                </table>
+                
+                <div class="prodImages">
+                    <img src="css/images/beds/imgBed2W300xH439.jpg" alt="Bed images"/>
                 </div>
-            </div>
+                
+                <div id="pagination">
+                    <?php echo pagination($statement,$limit,$page); ?>
+                </div>
+            </div> <!--    end of product Panel   -->
             
-            <div id="infoPane2">
-                <h4><img src="css/images/smallLogoW64xH14.jpg" alt=""> House Furniture and House Design Shop</h4>
-                <p>   
-                    We are one of the most successful retailers of high-end computer components, overclocked Gaming PC, 
-                    modding accessories and consumer electronics in the UK and you will find over 6,000 products available to buy online. 
-                    Overclockers UK is a leading retailer of computer components and offers a large selection of graphics cards, motherboards, 
-                    processors, storage drives and gaming systems. For those, who want to build individual systems, Overclockers UK offers 
-                    all the necessities like case fans, fan controllers and CPU coolers from all the best manufacturers in the industry 
-                    providing customers with unrivalled choice and peace of mind. With such a large range of components and products 
-                    on offer, competitive low prices and a highly knowledgeable sales team, Overclockers UK have renewed their commitment 
-                    to providing excellent customer service and have in place an industry leading, 14 day satisfaction guarantee.
-                </p>
-            </div>
+            
             
             <div id="footer">
                 <p>

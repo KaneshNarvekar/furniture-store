@@ -232,7 +232,7 @@ body
     background-color: #e14d0f;
 }
 
-#infoPane2
+#infoPanel2
 {
     width: 800px;
     height: 170px;
@@ -241,7 +241,7 @@ body
     margin-right: auto;
     background-color: black;
 }
-#infoPane2 h4
+#infoPanel2 h4
 {
     padding: 20px 10px 5px;
     margin: 0;
@@ -249,13 +249,13 @@ body
     font-family: Verdana;
 }
 
-#infoPane2 .orange
+#infoPanel2 .orange
 {
     color: #e14d0f;
     font-family: Broadway;
 }
 
-#infoPane2 p 
+#infoPanel2 p 
 {
     padding: 0px 10px 5px;
     margin: 0px;

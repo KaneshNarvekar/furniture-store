@@ -1,48 +1,129 @@
-#prodImage 
-{ 
-    width: 450px;
-    height: 530px;
+
+#prodInfoDiv {
+    width: 800px;
+    height: 800px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.thickLine { 
+    padding: 0; 
+    margin: 0; 
+    border: solid 2px; 
+    color: lightgrey;
+}
+
+.thinLine {
+    padding: 0;
+    margin: 0;
+    color: lightgrey;
+}
+
+#imgDivBg { 
+    width: 400px;
+    height: 800px;
     float: left;
-    border: solid 3px;
-    border-color: black;
     background-color: white;
 }
 
-#prodImage h2
-{
-    margin-left: 20px;
-    font-family: helvetica, arial, sans-serif; 
+#imgDiv {
+    width: 355px;
+    height: 750px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#prodImage img
-{
-    width: 450px;
-    height: 450px;
+#imgDiv h2 {
+    font-family: helvetica, arial, sans-serif;
+    margin-bottom: 0;
+    margin-top: 20px;
+}
+    
+#stars{
+    width: 170px;
+    height: 50px;
+}
+
+#prodSlides{
+    width: 350px;
+    height: 350px;
+}
+
+#prodSlides img{
+    width: 350px;
+    height: 350px;
     border: 0;
 }
 
-#prodDesc
-{
-    width: 328px;
-    height: 530px;
-    float: right;
-    border: solid 3px;
-    border-color: lightgrey;
+
+/* Thumb images style*/
+#prodThumbs a { 
+    display: block;
+    width: 50px;
+    height: 50px;
+    padding: 0px; 
+    border: 1px solid #ccc; 
 }
 
-#prodDesc h2, p
-{
-    padding: 5px;
+#prodThumbs li { 
+    width: 52px;
+    height: 52px;
+    float: left; 
+    margin: 2px; 
+    list-style: none; 
+    padding: 6px; 
+    display: block; 
+}
+
+#prodThumbs { 
+    width: 300px; 
+    margin: 15px; 
+    float: left 
+}
+
+#prodThumbs a:focus { outline: none;}
+#prodThumbs li:default { background-color: #e14d0f; }
+#prodThumbs li.activeLI { background-color: #e14d0f; }
+#prodThumbs li:hover { background: #e14d0f; }
+#prodThumbs img { border: none; display: block; width: 50px; height: 50px;}
+
+/* Product Description Container*/
+#prodDescDiv{
+    width: 400px;
+    height: 800px;
+    float: right;
+    background-color: white;
+}
+
+#prodDescDiv h2, h4, p{
     font-family: helvetica, arial, sans-serif;
 }
 
-#prodDesc p
-{
+#prodDescDiv p{
     font-size: 13px;
 }
 
-#notFound
-{
+#prodDescDiv li p{
+    padding: 0;
+    margin: 0;
+    font-size: 11px;
+}
+
+#descDiv1{
+    width: 300px;
+    height: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#descDiv1 input[type="text"]{
+    width: 20px;
+    margin-left: 50px;
+}
+/* End Product Description Container*/
+
+#notFound{
     width: 790px;
     height: 100px;
     border: solid 5px;
@@ -53,3 +134,5 @@
     font-weight: bold;
     color: red;
 }
+
+

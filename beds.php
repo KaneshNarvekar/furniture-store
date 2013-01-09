@@ -36,7 +36,7 @@
             <div id="productPanel">
                 
                 <div class="prodImages">
-                    <img src="css/images/beds/imgBed1W300xH439.jpg" alt="Bed images"/>
+                    <a href="prodInfo.php?prodId=bed12&amp;type=bed"><img src="css/images/beds/imgBed1W300xH439.jpg" alt="Bed images"/></a>
                 </div>
                 
                 <table id="productTable">
@@ -48,6 +48,7 @@
                     $limit = 9;
                     $startpoint = ($page * $limit) - $limit;
                     $statement = "FROM products where type=\"bed\"";
+                    $type = "bed";
                     $query = "SELECT * FROM products where type = \"bed\" LIMIT {$startpoint} , {$limit}";
                     $resultSet = mysql_query($query);
                     if (!$resultSet) die("<ERROR: Cannot execute $query>");
@@ -69,7 +70,7 @@
                                 $imageName = $fetchedRow[2];
                                 $price = $fetchedRow[5];
                                 $displayImage = "<img src=\"css/images/beds/$imageName\" alt=\"tableImage\"/>";
-                                echo " <td><a href=\"prodId=$id\"> $displayImage <p>$name <span class=\"price\">£$price</span></p></a></td> ";
+                                echo " <td><a href=\"prodInfo.php?prodId=$id&type=$type\"> $displayImage <p>$name <span class=\"price\">£$price</span></p></a></td> ";
                                 $fetchedRow = mysql_fetch_row($resultSet);
                             }
                         }

@@ -89,6 +89,7 @@
                     {
                         $name = $fetchedRow[1];
                         $prodDesc = $fetchedRow[3];
+                        $types = $type."s";
                         $price = $fetchedRow[5];
                         $BigImgNames = $fetchedRow[6];
                         $bigImgNamesArray = explode(":", $BigImgNames);
@@ -102,7 +103,15 @@
                                         <div id='prodSlides'>";
                         for ($i = 0; $i < $size; $i++)
                         {
-                            echo "<img src='css/images/chairs/$bigImgNamesArray[$i]' alt='Big chair image'/>";
+                            if ($i == 0) 
+                                { 
+                                    $className = "firstProdSlide"; 
+                                }
+                            else 
+                                { 
+                                    $className = "otherProdSlides"; 
+                                }
+                            echo "<img class='$className' src='css/images/$types/$bigImgNamesArray[$i]' alt='Big $type image'/>";
                         }
                         echo "          </div>
                                         <ul id='prodThumbs'></ul>

@@ -36,7 +36,7 @@
             <div id="productPanel">
                 
                 <div class="prodImages">
-                    <img src="css/images/chairs/imgChair1W300xH439.jpg" alt="Chair images"/>
+                    <a href="prodInfo.php?prodId=chair13&amp;type=chair"> <img src="css/images/chairs/imgChair1W300xH439.jpg" alt="Chair images"/> </a>
                 </div>
                 
                 <table id="productTable">
@@ -80,7 +80,7 @@
                 </table>
                 
                 <div class="prodImages">
-                    <img src="css/images/chairs/imgChair2W300xH439.jpg" alt="Chair images"/>
+                    <a href="prodInfo.php?prodId=chair07&amp;type=chair"><img src="css/images/chairs/imgChair2W300xH439.jpg" alt="Chair images"/></a>
                 </div>
                 
                 <div id="pagination">

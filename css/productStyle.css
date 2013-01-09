@@ -22,6 +22,8 @@
     border: 0;
 }
 
+.prodImages a:focus { outline: none; }
+
 #productTable
 {
     width: 500px;

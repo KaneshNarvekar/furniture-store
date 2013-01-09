@@ -50,6 +50,9 @@
     height: 350px;
 }
 
+#prodSlides .firstProdSlide { display: block; }
+#prodSlides .otherProdSlides { display: none; }
+
 #prodSlides img{
     width: 350px;
     height: 350px;
@@ -96,7 +99,7 @@
     background-color: white;
 }
 
-#prodDescDiv h2, h4, p{
+#prodDescDiv h2, h4, h5, p{
     font-family: helvetica, arial, sans-serif;
 }
 

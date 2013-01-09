@@ -16,8 +16,8 @@
                     $('#imgSlides').cycle(
                         {
                             fx:     'fade',
-                            speed:  'slow',
-                            timeout: 0,
+                            speed: 2000,
+                            sync: true,
                             pager:  '#ulThumbs',
                             pagerAnchorBuilder: function(idx, slide) 
                             {
@@ -25,7 +25,16 @@
                                 return '#ulThumbs li:eq(' + (idx) + ') a';
                             }
                         }
-                    );       
+                    );
+                    $('#featuredSlides').cycle(
+                        {
+                            fx:     'scrollHorz',
+                            timeout: 0,
+                            next: '#right',
+                            prev: '#left',
+                            nowrap: 0
+                        }
+                    );
                 }
             )
         </script>
@@ -56,10 +65,10 @@
             <div id="mainPanel">
                 <div id="imgSlides">
                     <img class="imgFirst" src="css/images/imgCenter1W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-                    <img class="imgFirst" src="css/images/imgCenter2W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-                    <img class="imgFirst" src="css/images/imgCenter3W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-                    <img class="imgFirst" src="css/images/imgCenter4W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-                    <img class="imgFirst" src="css/images/imgCenter5W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+                    <img class="imgOthers" src="css/images/imgCenter2W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+                    <img class="imgOthers" src="css/images/imgCenter3W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+                    <img class="imgOthers" src="css/images/imgCenter4W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+                    <img class="imgOthers" src="css/images/imgCenter5W650xH366.jpg" width="650" height="366" alt="centerImage"/>
                 </div>
                 
                 <ul id="ulThumbs">
@@ -74,14 +83,38 @@
             <div id="infoPanel">
                 <div id="window1"></div> 
                 <div id="window2">
-                    <p>
+                    
+                    <ul id="prodNav">
+                        <li><a id="right" href=""></a></li>
+                        <li><h4>Featured Products</h4></li> 
+                        <li><a id="left" href=""></a></li>
+                    </ul>
+                    
+                    
+                    
+                    <div id="featuredSlides">
                         
-                    </p>
+                        
+                        <div class="slide">
+                            <a href=""> <img src="css/images/beds/bed1.jpg" width="158" height="158" alt="centerImage"/></a>
+                             <a href=""> <img src="css/images/beds/bed2.jpg" width="158" height="158" alt="centerImage"/></a>
+                            <a href=""> <img src="css/images/beds/bed3.jpg" width="158" height="158" alt="centerImage"/></a>
+                        </div>
+                        
+                        <div class="slide">
+                            <img src="css/images/chairs/chair1.jpg" width="158" height="158" alt="centerImage"/>
+                            <img src="css/images/chairs/chair2.jpg" width="158" height="158" alt="centerImage"/>
+                            <img src="css/images/chairs/chair3.jpg" width="158" height="158" alt="centerImage"/>
+                        </div>
+                        
+                        
+                    </div> 
                 </div>
+                    
             </div>
             
             <div id="infoPanel2">
-                <h4><img src="css/images/smallLogoW64xH14.jpg" alt=""> House Furniture and House Design Shop</h4>
+                <h4>  <span class="orange"> DAVA&reg;</span> House Furniture and House Design Shop</h4>
                 <p>   
                     We are one of the most successful retailers of high-end computer components, overclocked Gaming PC, 
                     modding accessories and consumer electronics in the UK and you will find over 6,000 products available to buy online. 

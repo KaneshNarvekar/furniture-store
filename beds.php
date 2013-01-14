@@ -1,42 +1,52 @@
+<?php
+    session_start();
+    $_SESSION["allow"] = false;
+    $_SESSION["addToBasket"] = true;
+?>
 <!DOCTYPE html>
 <html>
     <head>
         <title>Beds &#124; DAVA</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/style.css"/>
-        <link rel="stylesheet" type="text/css" href="css/productStyle.css"/>
-        <link rel="stylesheet" type="text/css" href="css/pagination.css"/>
-	<link rel="stylesheet" type="text/css" href="css/grey.css"/>
         
+        <link href="css/pagination.css" rel="stylesheet" type="text/css"/>
+	<link href="css/grey.css" rel="stylesheet" type="text/css"/>
+        
+        <link href="css/home.css" rel="stylesheet" type="text/css"/>
+        <link href="css/prodList.css" rel="stylesheet" type="text/css"/>
+<!--///////////////////////////////END OF STYLE SHEET ///////////////////////-->
     </head>
+    
     <body>
         <div id="container">
-            <div id="headerPanel">
+            <div id="headerDiv">
                 <p>
                    <a href="#">login</a>
                    &#124;
                    <a href="#">my account</a>
                    &#124;
-                   <a href="#">my cart 0 items</a>
+                   <a href="basket.php">my cart&nbsp;<?php $size = sizeof($_SESSION["basket"]); echo "$size"; ?>&nbsp;items</a>
                 </p>
             </div>
+<!--///////////////////////////////NAVIGATION DIV ///////////////////////////-->
             <form>
-            <div id="navPanel">
-                <ul>
-                    <li><a class="logo" href="index.html"></a></li>
-                    <li><a class="button" href="chairs.php">CHAIRS</a></li>
-                    <li><a class="button" href="chests.php">CHESTS</a></li>
-                    <li><a class="button" href="beds.php">BEDS</a></li>
-                    <li class="txtNav"><input type="text" name="txtSearch"/></li>
-                    <li class="searchNav"><input type="submit" name="btnSearch" value=""/></li>
-                </ul>
-            </div>
+                <div id="navigationDiv">
+                    <ul>
+                        <li>                      <a class="logo" href="index.php"></a>               </li>
+                        <li>                      <a class="button" href="chairs.php">CHAIRS</a>      </li>
+                        <li>                      <a class="button" href="chests.php">CHESTS</a>      </li>
+                        <li>                      <a class="button" href="beds.php">BEDS</a>          </li>
+                        <li class="txtNav">       <input type="text" name="txtSearch"/>               </li>
+                        <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>    </li>
+                    </ul>
+                </div>
             </form>
+<!--///////////////////////////////END OF NAVIGATION ////////////////////////-->
             
-            <div id="productPanel">
-                
+            <div id="prodListDiv">
+                <div id="greyBG"> <h6> Luxury Beds </h6> </div>
                 <div class="prodImages">
-                    <a href="prodInfo.php?prodId=bed12&amp;type=bed"><img src="css/images/beds/imgBed1W300xH439.jpg" alt="Bed images"/></a>
+                    <a href="prodInfo.php?prodId=bed12&amp;type=bed"><img src="css/images/beds/imgBed1W300xH439.jpg" width="300" height="439" alt="Bed images"/></a>
                 </div>
                 
                 <table id="productTable">
@@ -69,7 +79,7 @@
                                 $name = $fetchedRow[1];
                                 $imageName = $fetchedRow[2];
                                 $price = $fetchedRow[5];
-                                $displayImage = "<img src=\"css/images/beds/$imageName\" alt=\"tableImage\"/>";
+                                $displayImage = "<img src=\"css/images/beds/$imageName\" width='158' height='158' alt=\"tableImage\"/>";
                                 echo " <td><a href=\"prodInfo.php?prodId=$id&type=$type\"> $displayImage <p>$name <span class=\"price\">£$price</span></p></a></td> ";
                                 $fetchedRow = mysql_fetch_row($resultSet);
                             }
@@ -80,17 +90,16 @@
                 </table>
                 
                 <div class="prodImages">
-                    <img src="css/images/beds/imgBed2W300xH439.jpg" alt="Bed images"/>
+                    <img src="css/images/beds/imgBed2W300xH439.jpg" width="300" height="439" alt="Bed images"/>
                 </div>
                 
-                <div id="pagination">
-                    <?php echo pagination($statement,$limit,$page); ?>
+                <div id="paginationBoxDiv">
+                    <div id="paginationDiv"><?php echo pagination($statement,$limit,$page); ?></div>
                 </div>
-            </div> <!--    end of product Panel   -->
+            </div>
+<!--///////////////////////////////END OF PRODUCT LIST //////////////////////-->
             
-            
-            
-            <div id="footer">
+            <div id="footerDiv">
                 <p>
                     <a href="#">Page Last Updated: December 31, 2012</a>
                     &#124;
@@ -103,9 +112,7 @@
                     <a href="#">&copy;2013 All Rights Reserved.</a>
                 </p>
             </div>
-            
-            
-            
-        </div> <!--    end of container   -->
+        </div>
+<!--///////////////////////////////END OF CONTAINER /////////////////////////-->
     </body>
 </html>

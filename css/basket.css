@@ -1,0 +1,67 @@
+
+
+#basketDiv {
+    position: relative;
+    width: 800px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    padding-bottom: 200px;
+    border: solid 1px;
+}
+
+#basketDiv h2 {
+    font-family: verdana, arial, sans-serif;
+    margin-left: 50px;
+}
+
+#basketTable {
+    position: relative;
+    border-collapse: separate;
+    border-spacing: 6px;
+    empty-cells: hide;
+    width: 700px;
+    height: 200px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: verdana, arial, sans-serif;
+    border: solid 1px;
+}
+
+#basketTable caption {
+    position: absolute;
+    left: 5px;
+}
+
+#basketTable th, td {
+    border: solid 1px;
+}
+
+#basketTable img {
+    width: 50px;
+    height: 50px;
+}
+
+.basketImg {
+    width: 50px;
+}
+
+.tableName {
+    vertical-align: bottom;
+    width: 200px;
+}
+
+.tableQty {
+    width: 70px;
+    text-align: center;
+}
+
+.tableQty input[type='text'] {
+    width: 30px;
+}
+
+.tablePrice {
+    width: 30px;
+}

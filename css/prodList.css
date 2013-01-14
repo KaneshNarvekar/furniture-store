@@ -1,11 +1,32 @@
 
-#productPanel 
+#prodListDiv 
 { 
     width: 800px;
-    height: 923px;
+    height: 948px;
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
+}
+
+#greyBG {
+    position: relative;
+    width: 800px;
+    height: 25px;
+    font-family: verdana, arial;
+    text-align: center;
+    line-height: 25px;
+    color: white;
+    background-color: #555555;
+}
+
+#greyBG h6 {
+    position: relative;
+    margin: 0;
+    font-size: smaller;
+}
+
+.leftHeadLine {
+    float: left;
 }
 
 .prodImages
@@ -15,13 +36,7 @@
     float: left;
 }
 
-.prodImages img
-{
-    width: 300px;
-    height: 439px;
-    border: 0;
-}
-
+.prodImages img { border: 0; }
 .prodImages a:focus { outline: none; }
 
 #productTable
@@ -62,13 +77,7 @@
     border-color: #e14d0f;
 }
 
-#productTable img
-{
-    width: 158px;
-    height: 158px;
-    margin-top: 2px;
-    border: 0;
-}
+#productTable img { margin-top: 2px; border: 0; }
 
 #productTable p
 {
@@ -78,13 +87,18 @@
     font-size: 14px;
 }
 
-#productTable .price
-{
-    font-size: 10px;
+#productTable .price { font-size: 10px; }
+
+#paginationBoxDiv {
+    float: right;
+    width: 800px;
+    height: 40px;
+    background-color: lightgrey;
 }
 
-#pagination
+#paginationDiv
 {
+    
     width: 500px;
     height: 30px;
     margin-top: 5px;

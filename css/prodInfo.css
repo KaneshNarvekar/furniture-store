@@ -1,5 +1,5 @@
 
-#prodInfoDiv {
+#prodInfoBoxDiv {
     width: 800px;
     height: 800px;
     margin-top: 10px;
@@ -20,6 +20,7 @@
     color: lightgrey;
 }
 
+/*////// PRODUCT IMAGE //////*/
 #imgDivBg { 
     width: 400px;
     height: 800px;
@@ -58,9 +59,9 @@
     height: 350px;
     border: 0;
 }
+/*////// END OF PRODUCT IMAGE //////*/
 
-
-/* Thumb images style*/
+/*////// PRODUCT IMAGE THUMB //////*/
 #prodThumbs a { 
     display: block;
     width: 50px;
@@ -91,7 +92,7 @@
 #prodThumbs li:hover { background: #e14d0f; }
 #prodThumbs img { border: none; display: block; width: 50px; height: 50px;}
 
-/* Product Description Container*/
+/*////// PRODUCT DESCRIPTION //////*/
 #prodDescDiv{
     width: 400px;
     height: 800px;
@@ -124,7 +125,7 @@
     width: 20px;
     margin-left: 50px;
 }
-/* End Product Description Container*/
+/*////// END OF PRODUCT DESCRIPTION //////*/
 
 #notFound{
     width: 790px;

@@ -67,11 +67,11 @@ function addRtgData(elm, totalrate, nrrates, renot) {
   var htmlrtg;
   if (nrrates == 0)
   {
-      htmlrtg = '<div class="totalrate"><i></i></div><div class="stars"><div class="star_n" style="width:'+star_n+'px;">&nbsp;</div>'+d_rtg+'</div><em> be the first one to vote.</em>'
+      htmlrtg = '<div class="totalrate"><i></i></div><div class="stars"><div class="star_n" style="width:'+star_n+'px;">&nbsp;</div>'+d_rtg+'</div><em> be the first one to rate.</em>'
   }
   else
   {
-      htmlrtg = '<div class="totalrate"><i></i></div><div class="stars"><div class="star_n" style="width:'+star_n+'px;">&nbsp;</div>'+d_rtg+'</div><em>'+nrrates+' votes</em>'
+      htmlrtg = '<div class="totalrate"><i></i></div><div class="stars"><div class="star_n" style="width:'+star_n+'px;">&nbsp;</div>'+d_rtg+'</div><em>'+nrrates+' ratings</em>'
   }
   if(sratings[elm]) sratings[elm].innerHTML = htmlrtg;
 }

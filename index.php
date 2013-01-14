@@ -1,12 +1,10 @@
 <?php
-session_start();
-$_SESSION["allow"] = false;
-$_SESSION["addToBasket"] = true;
-if (!isset($_SESSION["basket"]))
-{
-    $basket = array();
-    $_SESSION["basket"] = $basket;
-}
+    session_start();
+    if (!isset($_SESSION["basket"]))
+    {
+        $basket = array();
+        $_SESSION["basket"] = $basket;
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,11 +46,11 @@ if (!isset($_SESSION["basket"]))
                 }
             );
             })
-            //                $(function() 
-            //                {
-            //                    $('#dava').replaceWith('<strong>blablabla</strong>');
-            //                    
-            //                })
+                            $(function() 
+                            {
+                                $('#fade').fadeOut().remove();
+                                
+                            })
         </script>
     </head>
 <!--///////////////////////////////END OF HEAD///////////////////////////////-->    
@@ -81,9 +79,9 @@ if (!isset($_SESSION["basket"]))
                     </ul>
                 </div>
             </form>
-<!--        <div id="fade">
+        <div id="fade">
             <span id="dava">asdfd</span> 
-            </div>-->
+            </div>
 <!--///////////////////////////////END OF NAVIGATION/////////////////////////-->
 
         <div id="indexBoxDiv1">

@@ -1,6 +1,11 @@
 <?php 
-session_start();
-$_SESSION["allow"] = true;
+    session_start();
+    ob_start();
+    if (!isset($_SESSION["basket"]))
+    {
+        $basket = array();
+        $_SESSION["basket"] = $basket;
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -76,122 +81,136 @@ $_SESSION["allow"] = true;
                 </div>
             </form>
 <!--///////////////////////////////END OF NAVIGATION/////////////////////////-->
-            
+            <div id="itemAddedDiv">
+                    <img src="css/images/rightSign.png" width="25" height="25" alt="rightSign"/>
+                    <h3>You have added this item to your basket!</h3>
+            </div>
             <div id="prodInfoBoxDiv">
-<?php
-    include_once ("connect.php");
+                <?php
+                include_once ("connect.php");
 
-    $type = $_GET["type"];
-    $prodId = $_GET["prodId"];
-    $query = "SELECT * FROM products where type=\"$type\"";
-    $resultSet = mysql_query($query);
-    if (!$resultSet) die("<ERROR: Cannot execute $query>");
-
-    $fetchedRow = mysql_fetch_assoc($resultSet);
-    $prodFound = false;
-
-    while ($fetchedRow && !$prodFound)   //BY GIVEN ID FIND THE ITEM AND DISPLAY IT
-    {
-        $id = $fetchedRow["prodId"];
-        if ($id == $prodId)
-        {
-            $name = $fetchedRow["prodName"];
-            $imgName = $fetchedRow["prodImage"];
-            $prodDesc = $fetchedRow["prodDesc"];
-            $types = $type."s";
-            $price = $fetchedRow["price"];
-            $BigImgNames = $fetchedRow["bigImageNames"];
-            $bigImgNamesArray = explode(":", $BigImgNames);
-            $size = sizeof($bigImgNamesArray);
-            $prodFound = true;
-            echo "  <hr class='thickLine'/>
-                    <div id='imgDivBg'>
-                        <div id='imgDiv'>
-                            <h2>$name</h2>
-                            <div id='stars'> <div class='srtgs' id='rt_$id'></div> </div>
-                            <div id='prodSlides'>";
-            for ($i = 0; $i < $size; $i++)
-            {
-                if ($i == 0) 
-                    { 
-                        $className = "firstProdSlide"; 
-                    }
-                else 
-                    { 
-                        $className = "otherProdSlides"; 
-                    }
-                echo "<img class='$className' src='css/images/$types/$bigImgNamesArray[$i]' alt='Big $type image'/>";
-            }
-            echo "          </div>
-                            <ul id='prodThumbs'></ul>
-                        </div>
-                    </div>";
-            $descArray = explode("!!stop!!", $prodDesc);
-            echo "$descArray[0]";
-            echo "<form id='frmAddBasket'>
-                    <input type='hidden' name='prodId' value='$id'/>
-                    <input type='hidden' name='type' value='$type'/>
-                    <p>
-                      GBP &pound;$price
-                      <input type='text' name='txtQty' value='1'/>
-                      <input type='submit' name='btnAddToBasket' value='Add to Basket'>
-                    </p>
-                </form>";
-
-            echo "$descArray[1]";
-        }
-        $fetchedRow = mysql_fetch_assoc($resultSet);
-    } 
-    /////////////// END OF WHILE LOOP ///////////////
-
-    if (!$prodFound)    //IF PRODUCT IS NOT FOUND DISPLAY NOT FOUND DIV
-    {
-        echo "<div id=\"notFound\">";
-        echo "<p>Sorry we couldn't find the item you are looking for, maybe it is no longer available.</p>";
-        echo "</div>";
-    }
-    else
-    {
-        if (isset($_REQUEST["btnAddToBasket"])) //ELSE SEE IF ADD TO BASKET BUTTON CLICKED
-        {
-            $basket = $_SESSION["basket"]; 
-            $qty = $_REQUEST["txtQty"];
-            $item = array("id"=>$id, "name"=>$name, "price"=>$price, "qty"=>$qty, "imageName"=>$imgName, "types"=>$types);
-
-            if ($_SESSION["addToBasket"]) //IF COMING FROM PRODUCT LIST
-            {
-                $itemFound = false;
-                $size = sizeof($basket);
-                $i = 0;
-                while ($i < $size && !$itemFound)
+                if (isset($_GET["prodId"]) && isset($_GET["type"]))
                 {
-                    $oldId = $basket[$i]["id"];
-                    if ($id == $oldId)              // IF PRODUCT ALREADY EXIST ADD QUANTITY
-                    {
-                        $oldQty = $basket[$i]["qty"];
-                        $basket[$i]["qty"] = $oldQty + $qty;
-                        $itemFound = true;
-                    }
-                    $i++;
+                    $prodId = $_GET["prodId"];
+                    $type = $_GET["type"];
                 }
-                if (!$itemFound)  // IF PRODUCT NOT FOUND THEN ADD IT TO THE BASKET
+                else
                 {
-                    $basket[] = $item;
-                }    
-                $_SESSION["addToBasket"] = false;  //DISABLE REFRESH
+                    $prodId = null;
+                    $type = null;
+                }
 
-            }
-            $_SESSION["basket"] = $basket;
-            $nItems = sizeof($_SESSION["basket"]);      // TO DISPLAY CURRENT BASKET SIZE
-        echo "<script>                              
-                $(function() 
+                if (isset($_GET["itemAdded"])) //IF ITEM IS ADDED THEN DISPLAY NOTIFICATION 
                 {
-                    $('#nItems').replaceWith('<strong>$nItems</strong>');
-                }) 
-             </script>";
-        }
-    }
-?>
+                    echo " <script> 
+                            $(function() 
+                                {
+                                    $('#itemAddedDiv').slideDown('slow');
+                                })
+                           </script>";
+                }
+
+                $query = "SELECT * FROM products where type=\"$type\"";
+                $resultSet = mysql_query($query);
+                if (!$resultSet)
+                    die("<ERROR: Cannot execute $query>");
+
+                $fetchedRow = mysql_fetch_assoc($resultSet);
+                $prodFound = false;
+
+                while ($fetchedRow && !$prodFound)   //BY GIVEN ID FIND THE ITEM AND DISPLAY IT
+                {
+                    $id = $fetchedRow["prodId"];
+                    if ($id == $prodId)
+                    {
+                        $name = $fetchedRow["prodName"];
+                        $imgName = $fetchedRow["prodImage"];
+                        $prodDesc = $fetchedRow["prodDesc"];
+                        $types = $type . "s";
+                        $price = $fetchedRow["price"];
+                        $BigImgNames = $fetchedRow["bigImageNames"];
+                        $bigImgNamesArray = explode(":", $BigImgNames);
+                        $size = sizeof($bigImgNamesArray);
+                        $prodFound = true;
+                        echo "  <hr class='thickLine'/>
+                                                <div id='imgDivBg'>
+                                                    <div id='imgDiv'>
+                                                        <h2>$name</h2>
+                                                        <div id='stars'> <div class='srtgs' id='rt_$id'></div> </div>
+                                                        <div id='prodSlides'>";
+                        for ($i = 0; $i < $size; $i++)
+                        {
+                            if ($i == 0)
+                            {
+                                $className = "firstProdSlide";
+                            }
+                            else
+                            {
+                                $className = "otherProdSlides";
+                            }
+                            echo "<img class='$className' src='css/images/$types/$bigImgNamesArray[$i]' alt='Big $type image'/>";
+                        }
+                        echo "          </div>
+                                                        <ul id='prodThumbs'></ul>
+                                                    </div>
+                                                </div>";
+                        $descArray = explode("!!stop!!", $prodDesc);
+                        echo "$descArray[0]";
+                        echo "<form id='frmAddBasket'>
+                                                <input type='hidden' name='prodId' value='$id'/>
+                                                <input type='hidden' name='type' value='$type'/>
+                                                <p>
+                                                  GBP &pound;$price
+                                                  <input type='text' name='txtQty' value='1'/>
+                                                  <input type='submit' name='btnAddToBasket' value='Add to Basket'>
+                                                </p>
+                                            </form>";
+
+                        echo "$descArray[1]";
+                    }
+                    $fetchedRow = mysql_fetch_assoc($resultSet);
+                }
+                /////////////// END OF WHILE LOOP ///////////////
+
+                if (!$prodFound)    //IF PRODUCT IS NOT FOUND DISPLAY NOT FOUND DIV
+                {
+                    echo "<div id=\"notFound\">";
+                    echo "<p>Sorry we couldn't find the item you are looking for, maybe it is no longer available.</p>";
+                    echo "</div>";
+                }
+                else
+                {
+                    if (isset($_REQUEST["btnAddToBasket"])) //ELSE SEE IF ADD TO BASKET BUTTON CLICKED
+                    {
+                        $basket = $_SESSION["basket"];
+                        $qty = $_REQUEST["txtQty"];
+                        $item = array("id" => $id, "name" => $name, "price" => $price, "qty" => $qty, "imageName" => $imgName, "types" => $types);
+
+                        $itemFound = false;
+                        $size = sizeof($basket);
+                        $i = 0;
+                        while ($i < $size && !$itemFound)
+                        {
+                            $oldId = $basket[$i]["id"];
+                            if ($id == $oldId)              // IF PRODUCT ALREADY EXIST ADD QUANTITY
+                            {
+                                $oldQty = $basket[$i]["qty"];
+                                $basket[$i]["qty"] = $oldQty + $qty;
+                                $itemFound = true;
+                            }
+                            $i++;
+                        }
+                        if (!$itemFound)  // IF PRODUCT NOT FOUND THEN ADD IT TO THE BASKET
+                        {
+                            $basket[] = $item;
+                        }
+
+                        $_SESSION["basket"] = $basket;
+
+                        header("Location: prodInfo.php?prodId=" . $id . "&type=" . $type."&itemAdded=added"); //DISABLE REFRESH
+                    }
+                }
+                ?>
             </div>
 <!--///////////////////////////////END OF PRODUCT INFO BOX //////////////////-->
             
@@ -212,4 +231,4 @@ $_SESSION["allow"] = true;
 <!--///////////////////////////////END OF CONTAINER /////////////////////////-->
     </body>
 </html>
-
+<?php ob_flush(); ?>

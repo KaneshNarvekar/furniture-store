@@ -1,7 +1,10 @@
 <?php
     session_start();
-    $_SESSION["allow"] = false;
-    $_SESSION["addToBasket"] = true;
+    if (!isset($_SESSION["basket"]))
+    {
+        $basket = array();
+        $_SESSION["basket"] = $basket;
+    }
 ?>
 <!DOCTYPE html>
 <html>

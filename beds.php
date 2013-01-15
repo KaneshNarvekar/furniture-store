@@ -24,7 +24,7 @@
         <div id="container">
             <div id="headerDiv">
                 <p>
-                   <a href="#">login</a>
+                   <a href="login.php">login</a>
                    &#124;
                    <a href="#">my account</a>
                    &#124;
@@ -83,7 +83,7 @@
                                 $imageName = $fetchedRow[2];
                                 $price = $fetchedRow[5];
                                 $displayImage = "<img src=\"css/images/beds/$imageName\" width='158' height='158' alt=\"tableImage\"/>";
-                                echo " <td><a href=\"prodInfo.php?prodId=$id&type=$type\"> $displayImage <p>$name <span class=\"price\">£$price</span></p></a></td> ";
+                                echo " <td><a href=\"prodInfo.php?prodId=$id\"> $displayImage <p>$name <span class=\"price\">£$price</span></p></a></td> ";
                                 $fetchedRow = mysql_fetch_row($resultSet);
                             }
                         }

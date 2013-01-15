@@ -16,15 +16,44 @@
         <link href="css/basket.css" rel="stylesheet" type="text/css" />
 <!--///////////////////////////////END OF STYLE SHEET ///////////////////////-->
         <script src="javascript/jquery-1.8.3.min.js" type="text/javascript"></script>
+        <script src="javascript/validation.js" type="text/javascript"></script>
+        
+        <script type="text/javascript">
+            
+            //////// USING RAY'S JAVASCRIPT VALIDATION ///////
+            function btnUpdate()
+            {
+                var frmUpdate = document.getElementById("frmUpdate");
+                var qty = frmUpdate.qtyUpdate.value;
+
+                if (isEmpty(qty))
+                {
+                    alert("Please enter quantity!");
+                    return false;
+                }
+
+                if (!isInteger(qty))
+                {
+                    alert("Please enter whole number!");
+                    return false;
+                }
+
+                if (qty < 0)
+                {
+                    alert("Please enter positive number!")
+                    return false;
+                }
+            }
+        </script>
     </head>
     
     <body>
         <div id="container">
             <div id="headerDiv">
                 <p>
-                   <a href="#">login</a>
+                   <a href="login.php">login</a>
                    &#124;
-                   <a href="#">my account</a>
+                   <a href="">my account</a>
                    &#124;
                    <a href="basket.php">my cart&nbsp;<?php $size = sizeof($_SESSION["basket"]); echo "<span id='nItems'>$size</span>"; ?>&nbsp;items</a>
                 </p>
@@ -97,7 +126,7 @@
                                     <td class='tdProdImg'> <img src='css/images/$types/$imgName' width='50' height='52' alt='image $imgName'/> </td>
                                     <td class='tdName'> <p>$name</p> </td>
                                     <td class='tdPrice'> &pound$price </td>
-                                    <td class='tdQty'> <form> <input type='hidden' name='hidIdUpdate' value='$id'/> <input type='text' name='qtyUpdate' value='$qty'/> <input type='submit' value='update'> </form></td>
+                                    <td class='tdQty'> <form id='frmUpdate'> <input type='hidden' name='hidIdUpdate' value='$id'/> <input type='text' name='qtyUpdate' value='$qty'/> <input type='submit' value='update' onclick='return btnUpdate();'/> </form></td>
                                     <td class='tdLineTotal'>&nbsp;&nbsp;&pound$cost </td>
                                   </tr>
                                   <tr><td class='tdThinLine' colspan='5'> </td></tr>";
@@ -182,10 +211,4 @@
 <!--///////////////////////////////END OF CONTAINER/////////////////////////-->
     </body>
 </html>
-
-
-
-
-
-<!--                        <tr><td class='basketImg'>$id</td><td>$name</td><td class='tableQty'>$qty</td><td class='tablePrice'>&pound$price</td> </tr>-->
 

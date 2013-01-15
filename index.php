@@ -58,9 +58,9 @@
         <div id="containerDiv">
             <div id="headerDiv">
                 <p>
-                    <a href="#">login</a>
+                    <a href="login.php">login</a>
                     &#124;
-                    <a href="#">my account</a>
+                    <a href="login.php">my account</a>
                     &#124;
                     <a id="cart" href="basket.php">my cart&nbsp;<?php $size = sizeof($_SESSION["basket"]); echo "$size"; ?>&nbsp;items</a>
                 </p>

@@ -22,6 +22,7 @@
         <script src="ratingfiles/ratings.js" type="text/javascript"></script>
         <script src="javascript/jquery-1.8.3.min.js" type="text/javascript"></script>
         <script src="javascript/jquery.cycle.all.js" type="text/javascript"></script>
+        <script src="javascript/validation.js" type="text/javascript"></script>
         
         <script type="text/javascript">
             $.fn.cycle.updateActivePagerLink = function(pager, currSlideIndex) {
@@ -50,7 +51,33 @@
                     }
                     
                 });       
-            })
+            });
+            
+            
+            //////// USING RAY'S JAVASCRIPT VALIDATION ///////
+            function checkQty()
+            {
+                var frmAddToBasket = document.getElementById("frmAddToBasket");
+                var qty = frmAddToBasket.txtQty.value;
+
+                if (isEmpty(qty) || qty == 0)
+                {
+                    alert("Please enter quantity!");
+                    return false;
+                }
+
+                if (!isInteger(qty))
+                {
+                    alert("Please enter whole number!");
+                    return false;
+                }
+
+                if (qty < 0)
+                {
+                    alert("Please enter positive number!")
+                    return false;
+                }
+            }
         </script>
     </head>
 <!--///////////////////////////////END OF HEAD///////////////////////////////-->
@@ -59,7 +86,7 @@
         <div id="container">
             <div id="headerDiv">
                 <p>
-                   <a href="#">login</a>
+                   <a href="login.php">login</a>
                    &#124;
                    <a href="#">my account</a>
                    &#124;
@@ -87,19 +114,12 @@
             <div id="prodInfoBoxDiv">
                 <?php
                 include_once ("connect.php");
-
-                if (isset($_GET["prodId"]) && isset($_GET["type"]))
+                $prodId = null;
+                if (isset($_GET["prodId"]))     // GET PRODUCT ID
                 {
                     $prodId = $_GET["prodId"];
-                    $type = $_GET["type"];
                 }
-                else
-                {
-                    $prodId = null;
-                    $type = null;
-                }
-
-                if (isset($_GET["itemAdded"])) //IF ITEM IS ADDED THEN DISPLAY NOTIFICATION 
+                if (isset($_GET["itemAdded"])) // IF ADDED SUCCESSFUL DISPLAY NOTIFICATION 
                 {
                     echo " <script> 
                             $(function() 
@@ -108,78 +128,74 @@
                                 })
                            </script>";
                 }
-
-                $query = "SELECT * FROM products where type=\"$type\"";
+                ///////////// SELECTING ITEM FROM DATABASE ///////////////
+                $query = "SELECT * FROM products where prodId='$prodId'";   
                 $resultSet = mysql_query($query);
-                if (!$resultSet)
-                    die("<ERROR: Cannot execute $query>");
-
+                if (!$resultSet) die("<ERROR: Cannot execute $query>");
                 $fetchedRow = mysql_fetch_assoc($resultSet);
-                $prodFound = false;
-
-                while ($fetchedRow && !$prodFound)   //BY GIVEN ID FIND THE ITEM AND DISPLAY IT
+                ///////////// END OF SELECTING ITEM FROM DATABASE ///////////////
+                if ($fetchedRow == null)    
                 {
-                    $id = $fetchedRow["prodId"];
-                    if ($id == $prodId)
-                    {
-                        $name = $fetchedRow["prodName"];
-                        $imgName = $fetchedRow["prodImage"];
-                        $prodDesc = $fetchedRow["prodDesc"];
-                        $types = $type . "s";
-                        $price = $fetchedRow["price"];
-                        $BigImgNames = $fetchedRow["bigImageNames"];
-                        $bigImgNamesArray = explode(":", $BigImgNames);
-                        $size = sizeof($bigImgNamesArray);
-                        $prodFound = true;
-                        echo "  <hr class='thickLine'/>
-                                                <div id='imgDivBg'>
-                                                    <div id='imgDiv'>
-                                                        <h2>$name</h2>
-                                                        <div id='stars'> <div class='srtgs' id='rt_$id'></div> </div>
-                                                        <div id='prodSlides'>";
-                        for ($i = 0; $i < $size; $i++)
-                        {
-                            if ($i == 0)
-                            {
-                                $className = "firstProdSlide";
-                            }
-                            else
-                            {
-                                $className = "otherProdSlides";
-                            }
-                            echo "<img class='$className' src='css/images/$types/$bigImgNamesArray[$i]' alt='Big $type image'/>";
-                        }
-                        echo "          </div>
-                                                        <ul id='prodThumbs'></ul>
-                                                    </div>
-                                                </div>";
-                        $descArray = explode("!!stop!!", $prodDesc);
-                        echo "$descArray[0]";
-                        echo "<form id='frmAddBasket'>
-                                                <input type='hidden' name='prodId' value='$id'/>
-                                                <input type='hidden' name='type' value='$type'/>
-                                                <p>
-                                                  GBP &pound;$price
-                                                  <input type='text' name='txtQty' value='1'/>
-                                                  <input type='submit' name='btnAddToBasket' value='Add to Basket'>
-                                                </p>
-                                            </form>";
-
-                        echo "$descArray[1]";
-                    }
-                    $fetchedRow = mysql_fetch_assoc($resultSet);
-                }
-                /////////////// END OF WHILE LOOP ///////////////
-
-                if (!$prodFound)    //IF PRODUCT IS NOT FOUND DISPLAY NOT FOUND DIV
-                {
-                    echo "<div id=\"notFound\">";
-                    echo "<p>Sorry we couldn't find the item you are looking for, maybe it is no longer available.</p>";
-                    echo "</div>";
+                    echo "  <div id='infoNotFoundThickLine'></div>
+                            <div id='prodNotFoundDiv'> 
+                                <h3>Sorry we couldn't find the product you are looking for...</h3> 
+                                <h5>Can't find what you are looking for? Contact our sales assisstants.</h5>
+                                <a id='aContinueShop' href='index.php'>Continue shopping</a>
+                            </div>";
                 }
                 else
                 {
-                    if (isset($_REQUEST["btnAddToBasket"])) //ELSE SEE IF ADD TO BASKET BUTTON CLICKED
+                    $id = $fetchedRow["prodId"];
+                    $name = $fetchedRow["prodName"];
+                    $imgName = $fetchedRow["prodImage"];
+                    $prodDesc = $fetchedRow["prodDesc"];
+                    $type = $fetchedRow["type"];
+                    $types = $type."s";
+                    $price = $fetchedRow["price"];
+                    $BigImgNames = $fetchedRow["bigImageNames"];
+                    $bigImgNamesArray = explode(":", $BigImgNames);
+                    $bigImageArraySize = sizeof($bigImgNamesArray);
+                    echo "  <hr class='thickLine'/>
+                            <div id='imgDivBg'>
+                                <div id='imgDiv'>
+                                    <h2>$name</h2>
+                                    <div id='stars'> <div class='srtgs' id='rt_$id'></div> </div>
+                                    <div id='prodSlides'>";
+                    ///////////// SLIDE IMAGES DISPLAYED HERE ///////////////
+                    for ($i = 0; $i < $bigImageArraySize; $i++)
+                    {
+                        if ($i == 0) {
+                            $className = "firstProdSlide";  // GIVE FIRST CLASS
+                        }
+                        else {
+                            $className = "otherProdSlides"; // GIVE OTHERS CLASS
+                        }
+                        echo "<img class='$className' src='css/images/$types/$bigImgNamesArray[$i]' alt='Big $type image'/>";
+                    }
+                    //////////// END OF SLIDE IMAGES ///////////////
+                    
+                    echo "</div>"; // END OF PROD SLIDES DIV
+                    
+                    echo "<ul id='prodThumbs'></ul>"; // IMAGES THUMBNAILS SELECTORS
+                    
+                    echo "</div>"; // END OF PROD SLIDES DIV IMG DIV
+                    
+                    echo "</div>"; // END OF IMG DIV BG
+                    $descArray = explode("!!stop!!", $prodDesc);    // EXPLODE PRODUCT DESCRIPTION
+                    echo "$descArray[0]";
+                    ///////////// FORMS ARE DISPLAYED HERE///////////////
+                    echo "<form id='frmAddToBasket'> 
+                              <input type='hidden' name='prodId' value='$id'/>
+                              <input type='hidden' name='type' value='$type'/>
+                              <p>
+                                  GBP &pound;$price
+                                  <input type='text' name='txtQty' value='1'/> 
+                                  <input type='submit' name='btnAddToBasket' value='Add to Basket' onclick='return checkQty();'/> 
+                              </p>
+                          </form>";
+                    echo "$descArray[1]";
+
+                    if (isset($_REQUEST["btnAddToBasket"])) // IF ADD TO BASKET BUTTON CLICKED
                     {
                         $basket = $_SESSION["basket"];
                         $qty = $_REQUEST["txtQty"];
@@ -204,12 +220,13 @@
                             $basket[] = $item;
                         }
 
-                        $_SESSION["basket"] = $basket;
+                        $_SESSION["basket"] = $basket;      // UDPATE SESSION VARIABLE
 
-                        header("Location: prodInfo.php?prodId=" . $id . "&type=" . $type."&itemAdded=added"); //DISABLE REFRESH
+                        header("Location: prodInfo.php?prodId=" . $id . "&itemAdded=added"); //DISABLE REFRESH
                     }
-                }
+                }   // END OF ELSE IF FETCHED ROW NULL
                 ?>
+                <div id="infoThickLine"> </div> <!-- THICK LINE AT THE BOTTOM -->
             </div>
 <!--///////////////////////////////END OF PRODUCT INFO BOX //////////////////-->
             

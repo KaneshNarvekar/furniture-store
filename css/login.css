@@ -1,0 +1,124 @@
+/*/////// LOGIN BOXES DIVS ///////*/
+#loginBoxDiv {
+    position: relative;
+    width: 800px;
+    height: 550px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+
+#loginBoxDiv h3 {
+    margin-left: 50px;
+    font-family: verdana, arial, sans-serif;
+    color: rgb(228, 121, 17);
+}
+
+.loginThinLine {
+    border: dashed 1px;
+}
+
+#loginThickLine {
+    position: absolute;
+    width: 800px;
+    height: 20px;
+    bottom: 0;
+    background-color: grey;
+}
+
+#hasAccountDiv {
+    position: relative;
+    width: 380px;
+    height: 500px;
+    float: left;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 1px;
+}
+
+#hasNotAccountDiv {
+    position: relative;
+    width: 400px;
+    height: 500px;
+    float: right;
+    border: solid 1px;
+}
+/*/////// HAS ACCOUNT ///////*/
+#loginBoxDiv h5 {
+    margin-left: 50px;
+    font-family: verdana, arial, sans-serif;
+}
+
+#hasAccountDiv form {
+    width: 142px;
+    height: 150px;
+    margin-left: 50px;
+}
+
+#hasAccountDiv input[type="text"] {
+    width: 140px;
+    height: 20px;
+    border: solid 1px;
+    margin-bottom: 10px;
+}
+
+#hasAccountDiv input[type="text"]:focus {
+    border-color: #e14d0f;
+}
+
+#hasAccountDiv input[type="submit"] {
+    width: 70px;
+    height: 30px;
+    border: 0;
+    background-color: black;
+    color: white;
+}
+
+#hasAccountDiv input[type="submit"]:hover { background-color: #e14d0f; color: black;}
+
+.spanInputs {
+    font-family: verdana, arial, sans-serif;
+    font-size: 12px;
+}
+
+/*/////// HAS NOT ACCOUNT ///////*/
+#hasNotAccountDiv p {
+    margin-left: 50px;
+    font-family: verdana, arial, sans-serif;
+    font-size: 12px;
+}
+
+#hasNotAccountDiv form {
+    width: 202px;
+    height: 400px;
+    margin-left: 50px;
+}
+
+#hasNotAccountDiv input[type="text"] {
+    width: 200px;
+    height: 20px;
+    border: solid 1px;
+    margin-bottom: 10px;
+}
+
+#hasNotAccountDiv input[type="text"]:focus {
+    border-color: #e14d0f;
+}
+
+#hasNotAccountDiv input[type="submit"] {
+    width: 80px;
+    height: 30px;
+    border: 0;
+    background-color: black;
+    color: white;
+}
+
+#hasNotAccountDiv input[type="submit"]:hover { background-color: #e14d0f; color: black;}
+
+
+
+
+

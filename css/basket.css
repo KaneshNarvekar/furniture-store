@@ -31,11 +31,6 @@
     border: solid 1px #e14d0f;
 }
 
-#basketTable caption {
-    position: absolute;
-    left: 5px;
-}
-
 #basketTable th {
     height: 30px;
     background-color: #e14d0f;

@@ -34,8 +34,8 @@
                         // return sel string for existing anchor
                         return '#ulThumbs li:eq(' + (idx) + ') a';
                     }
-                }
-            );
+                });
+                
                 $('#featuredSlides').cycle(
                 {
                     fx:     'scrollHorz',
@@ -43,14 +43,13 @@
                     next: '#right',
                     prev: '#left',
                     nowrap: 0
-                }
-            );
+                });
             })
-                            $(function() 
-                            {
-                                $('#fade').fadeOut().remove();
-                                
-                            })
+            
+//            $(function() 
+//            {
+//                $('#fade').fadeOut().remove();
+//            });
         </script>
     </head>
 <!--///////////////////////////////END OF HEAD///////////////////////////////-->    
@@ -80,8 +79,8 @@
                 </div>
             </form>
         <div id="fade">
-            <span id="dava">asdfd</span> 
-            </div>
+            <span id="dava">asdfdsdfsdfsd</span> 
+        </div>
 <!--///////////////////////////////END OF NAVIGATION/////////////////////////-->
 
         <div id="indexBoxDiv1">

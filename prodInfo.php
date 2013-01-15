@@ -25,8 +25,7 @@
         
         <script type="text/javascript">
             $.fn.cycle.updateActivePagerLink = function(pager, currSlideIndex) {
-                $(pager).find('li').removeClass('activeLI')
-                .filter('li:eq('+currSlideIndex+')').addClass('activeLI');
+                $(pager).find('li').removeClass('activeLI').filter('li:eq('+currSlideIndex+')').addClass('activeLI');
             };
             
             $.fn.cycle.updateActivePagerLink = function(pager, currSlide, clsName) {

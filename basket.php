@@ -45,13 +45,14 @@
 <!--///////////////////////////////END OF NAVIGATION/////////////////////////-->
             
             <div id="basketDiv">
-                <h2 id="basketHeading"> Your Basket </h2>
+                <h3 id="basketHeading"> Shopping Basket </h3>
                 
 <!--/////////////////////////////// BASKET TABLE ////////////////////////////-->
                 <table id="basketTable">
                         <tr>
-                            <th colspan="2">Product Name</th> <th>Quantity</th> <th>Price</th>
+                            <th id="thProdName" colspan="2">Product Name</th> <th>Price</th> <th>Quantity</th> <th id="thLineTotal">&nbsp;&nbsp;Line Total</th> 
                         </tr>
+                        <tr><td class='tdFirstThinLine' colspan='5'> </td></tr>
                         <?php
                         $update = false;
                         $basket = $_SESSION["basket"];    
@@ -76,6 +77,7 @@
                                         {
                                             var fade = $('#tr$id');
                                             fade.fadeOut();
+                                            
                                         }) 
                                         </script>";
                                     $remove = true;
@@ -90,12 +92,15 @@
                             $name = $item["name"];
                             $price = $item["price"];
                             $qty = $basket[$key]["qty"];
+                            $cost = $qty * $price;
                             echo "<tr id='tr$id'>
-                                    <td class='basketImg'> <img src='css/images/$types/$imgName' alt='image $imgName'/> </td>
-                                    <td class='tableName'> $name </td>
-                                    <td class='tableQty'> <form> <input type='hidden' name='hidIdUpdate' value='$id'/> <input type='text' name='qtyUpdate' value='$qty'/> <input type='submit' value='update'> </form></td>
-                                    <td class='tablePrice'> &pound$price </td>
-                                  </tr>";
+                                    <td class='tdProdImg'> <img src='css/images/$types/$imgName' width='50' height='52' alt='image $imgName'/> </td>
+                                    <td class='tdName'> <p>$name</p> </td>
+                                    <td class='tdPrice'> &pound$price </td>
+                                    <td class='tdQty'> <form> <input type='hidden' name='hidIdUpdate' value='$id'/> <input type='text' name='qtyUpdate' value='$qty'/> <input type='submit' value='update'> </form></td>
+                                    <td class='tdLineTotal'>&nbsp;&nbsp;&pound$cost </td>
+                                  </tr>
+                                  <tr><td class='tdThinLine' colspan='5'> </td></tr>";
                             if ($remove)
                             {
                                 unset($basket[$key]);   // REMOVING ITEM FROM THE BASKET
@@ -120,7 +125,9 @@
                                     $(function() 
                                     {
                                         $('#basketHeading').append('<strong>Is Empty</strong>');
+                                        $('#basketHeading').after('<h5>You have no items in your basket.</h5>');
                                         $('#basketTable').remove();
+                                        $('#aCheckout').remove();
                                     }) 
                                   </script>";
                         }
@@ -134,19 +141,27 @@
                                 $total = $total + ($price * $qty);
                             }
                             $shippingCost = 50;
-                            $vatRate = 0.2;
-                            $vat = $vatRate * $total;
-                            $grandTotal = $total + $shippingCost + $vat; 
-                            echo "<tr>  <td><!-- 1 --></td>  <td><!-- 2 --></td>  <td>  Subtotal      </td>   <td>&pound;$total         </td>  </tr>";
+                            define("VATRATE", 0.2);
+                            $vat = VATRATE * $total;
+                            $grandTotal = $total + $shippingCost + $vat;
+                            echo "<tr class='trEmptySpace'><td colspan='5'></td></tr> ";
+                            echo "<tr>  <td colspan='2'></td>  <td class='tdEnd' colspan='2'>  Subtotal:       </td>  <td class='tdEndData'>&nbsp;&nbsp;&pound;$total         </td>  </tr>";
                                  
-                            echo "<tr>  <td><!-- 1 --></td>  <td><!-- 2 --></td>  <td>  Shipping Cost  </td>  <td>&pound;$shippingCost  </td>  </tr>";
+                            echo "<tr>  <td colspan='2'></td>  <td class='tdEnd' colspan='2'>  Shipping Cost:  </td>  <td class='tdEndData'>&nbsp;&nbsp;&pound;$shippingCost  </td>  </tr>";
                                     
-                            echo "<tr>  <td><!-- 1 --></td>  <td><!-- 2 --></td>  <td>  VAT            </td>  <td>&pound;$vat           </td>  </tr>";
+                            echo "<tr>  <td colspan='2'></td>  <td class='tdEnd' colspan='2'>  VAT:            </td>  <td class='tdEndData'>&nbsp;&nbsp;&pound;$vat           </td>  </tr>";
                                  
-                            echo "<tr>  <td><!-- 1 --></td>  <td><!-- 2 --></td>  <td>  Grand Total    </td>  <td>&pound;$grandTotal    </td>  </tr>";
+                            echo "<tr>  <td colspan='2'></td>  <td class='tdGrandTotal' colspan='2'>  Grand Total:    </td>  <td class='tdGrandTotalData'>&nbsp;&nbsp;&pound;$grandTotal    </td>  </tr>";
                         }
                         ?>
                     </table>
+                    <div id="checkOutDiv">
+                        <a id="aContinueShop" href="index.php">Continue shopping</a>
+                        <a id="aCheckout" href="checkout.php">Proceed to checkout</a>
+                    </div>
+                    <div id="basketThickLine">
+                        
+                    </div>
             </div>
 <!--///////////////////////////////END OF BASKET TABLE DIV/////////////////////////-->
             

@@ -2,7 +2,7 @@
 #loginBoxDiv {
     position: relative;
     width: 800px;
-    height: 550px;
+    height: 650px;
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
@@ -36,7 +36,6 @@
     float: left;
     margin-left: auto;
     margin-right: auto;
-    border: solid 1px;
 }
 
 #hasNotAccountDiv {
@@ -44,7 +43,6 @@
     width: 400px;
     height: 500px;
     float: right;
-    border: solid 1px;
 }
 /*/////// HAS ACCOUNT ///////*/
 #loginBoxDiv h5 {
@@ -80,11 +78,25 @@
 #hasAccountDiv input[type="submit"]:hover { background-color: #e14d0f; color: black;}
 
 .spanInputs {
+    width: 200px;
+    float: left;
     font-family: verdana, arial, sans-serif;
     font-size: 12px;
+    
 }
 
 /*/////// HAS NOT ACCOUNT ///////*/
+#errorDiv {
+    display: none;
+    width: 300px;
+    height: 50px;
+    margin-left: 50px;
+    border: solid 1px #e14d0f;;
+    color: #e14d0f;
+    font-family: verdana, arial;
+    font-size: 12px;
+}
+
 #hasNotAccountDiv p {
     margin-left: 50px;
     font-family: verdana, arial, sans-serif;
@@ -92,14 +104,16 @@
 }
 
 #hasNotAccountDiv form {
-    width: 202px;
-    height: 400px;
+    width: 300px;
+    height: 500px;
+    margin-top: 10px;
     margin-left: 50px;
 }
 
 #hasNotAccountDiv input[type="text"] {
     width: 200px;
     height: 20px;
+    margin-right: 80px;
     border: solid 1px;
     margin-bottom: 10px;
 }
@@ -118,7 +132,11 @@
 
 #hasNotAccountDiv input[type="submit"]:hover { background-color: #e14d0f; color: black;}
 
+/*/////// SUCCESSFULLY ACCOUNT CREATED ///////*/
 
-
-
+#hasNotAccountDiv h2 {
+    font-family: verdana, arial;
+    margin-left: 50px;
+    color: #e14d0f;
+}
 

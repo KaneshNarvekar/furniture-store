@@ -57,10 +57,31 @@
     <body>
         <div id="containerDiv">
             <div id="headerDiv">
+                <form id='frmLogout' method="post">
+                <?php
+                if (isset($_POST["btnLogout"]))
+                {
+                    unset($_SESSION["customerName"]);
+                }
+                if (isset($_SESSION["customerName"]))
+                {
+                    $custName = $_SESSION["customerName"];
+                    echo "<span id='custName'>
+                                Welcome,&nbsp;<a id='aCustName' href=''>$custName</a>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type='submit' name='btnLogout' value='(Logout)'/>
+                          </span>";
+                    echo "  <script> 
+                                $(function() 
+                                    {
+                                        $('#login').remove();
+                                    })
+                            </script>";
+                }
+                ?>
+                </form>
                 <p>
-                    <a href="login.php">login</a>
-                    &#124;
-                    <a href="login.php">my account</a>
+                    <a id="login" href="login.php">login</a>
                     &#124;
                     <a id="cart" href="basket.php">my cart&nbsp;<?php $size = sizeof($_SESSION["basket"]); echo "$size"; ?>&nbsp;items</a>
                 </p>

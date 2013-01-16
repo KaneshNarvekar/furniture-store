@@ -16,19 +16,46 @@ body
 {
     position: relative;
     width: 800px;
-    height: 15px;
+    height: 35px;
     margin-left: auto;
     margin-right: auto;
 }
 
+/*///// IF CUSTOMER NAME EXIST /////*/
+#custName {
+    position: absolute;
+    width: 400px;
+    top: 5px;
+    margin: 0;
+    font: 12px verdana, arial;
+}
+
+#custName input[type='submit'] {
+    width: 70px;
+    height: 22px;
+    border: 0;
+    background-color: #f2f2f2;
+    font-size: 12px;
+    font-family: verdana, arial;
+}
+
+#custName input[type='submit']:hover { color: #e14d0f;}
+
+#aCustName {
+    font-weight: bold;
+}
+
+#aCustName:hover { color: #e14d0f;}
+
+/*///// END IF CUSTOMER NAME EXIST /////*/
 #headerDiv p
 {
     position: absolute;
     right: 5px;
-    bottom: 0;
+    top: 7px;
     margin: 0;
     font-family: Verdana;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 #headerDiv a

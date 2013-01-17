@@ -57,33 +57,33 @@
     <body>
         <div id="containerDiv">
             <div id="headerDiv">
-                <form id='frmLogout' method="post">
+<!--/////////////////////////// WELCOME USER ////////////////////////////////-->  
+                
                 <?php
                 if (isset($_POST["btnLogout"]))
                 {
-                    unset($_SESSION["customerName"]);
+                    unset($_SESSION["customer"]);
                 }
-                if (isset($_SESSION["customerName"]))
+                if (isset($_SESSION["customer"]))
                 {
-                    $custName = $_SESSION["customerName"];
-                    echo "<span id='custName'>
-                                Welcome,&nbsp;<a id='aCustName' href=''>$custName</a>
-                                &nbsp;&nbsp;&nbsp;
-                                <input type='submit' name='btnLogout' value='(Logout)'/>
-                          </span>";
+                    $custName = $_SESSION["customer"]["name"];
+                    echo "<span id='welcomeSpan'><a id='aWelcome' href='account.php'>Welcome, $custName</a></span>";
                     echo "  <script> 
-                                $(function() 
-                                    {
-                                        $('#login').remove();
-                                    })
+                            $(function() 
+                                {
+                                    $('#login').remove();
+                                })
                             </script>";
                 }
                 ?>
-                </form>
+<!--///////////////////////// END OF WELCOME USER ///////////////////////////--> 
                 <p>
-                    <a id="login" href="login.php">login</a>
-                    &#124;
-                    <a id="cart" href="basket.php">my cart&nbsp;<?php $size = sizeof($_SESSION["basket"]); echo "$size"; ?>&nbsp;items</a>
+                    <a id="login" href="login.php">login &#124;</a>
+                    
+                    <a id="cart" href="basket.php">
+                        <img src="css/images/imgCartW26xH26.png" width="26" height="26" alt="Cart Image"/>
+                        my cart&nbsp;<?php $size = sizeof($_SESSION["basket"]); echo "$size"; ?>&nbsp;items
+                    </a>
                 </p>
             </div>
 <!--///////////////////////////////NAVIGATION PANEL//////////////////////////-->

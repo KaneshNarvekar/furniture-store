@@ -18,15 +18,40 @@
         <link href="css/home.css" rel="stylesheet" type="text/css"/>
         <link href="css/prodList.css" rel="stylesheet" type="text/css"/>
 <!--///////////////////////////////END OF STYLE SHEET ///////////////////////-->
+        <script src="javascript/jquery-1.8.3.min.js" type="text/javascript"></script>
     </head>
     
     <body>
         <div id="container">
             <div id="headerDiv">
+<!--/////////////////////////// WELCOME USER ////////////////////////////////-->  
+                <form id='frmLogout' method="post">
+                <?php
+                if (isset($_POST["btnLogout"]))
+                {
+                    unset($_SESSION["customer"]);
+                }
+                if (isset($_SESSION["customer"]))
+                {
+                    $custName = $_SESSION["customer"]["name"];
+                    $custEmail = $_SESSION["customer"]["email"];
+                    echo "<span id='custName'>
+                                Welcome,&nbsp;<a id='aCustName' href='account.php?custEmail=$custEmail'>$custName</a>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type='submit' name='btnLogout' value='(Logout)'/>
+                          </span>";
+                    echo "  <script> 
+                                $(function() 
+                                    {
+                                        $('#login').remove();
+                                    })
+                            </script>";
+                }
+                ?>
+                </form>
+<!--///////////////////////// END OF WELCOME USER ///////////////////////////--> 
                 <p>
-                   <a href="login.php">login</a>
-                   &#124;
-                   <a href="#">my account</a>
+                   <a id="login" href="login.php">login</a>
                    &#124;
                    <a href="basket.php">my cart&nbsp;<?php $size = sizeof($_SESSION["basket"]); echo "$size"; ?>&nbsp;items</a>
                 </p>

@@ -1,0 +1,91 @@
+#accountBoxDiv {
+    position: relative;
+    width: 800px;
+    height: 620px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    padding-top: 10px;
+}
+
+#accountBoxDiv h3 {
+    margin-left: 20px;
+    font-family: verdana, arial, sans-serif;
+    color: rgb(228, 121, 17);
+}
+
+#accountThickLine {
+    position: absolute;
+    width: 800px;
+    height: 10px;
+    top: 0;
+    background-color: grey;
+}
+
+#accountDiv { 
+    width: 400px;
+    height: 600px;
+    float: left;
+    margin-left: 20px;
+}
+
+#accountDiv p {
+    margin-left: 20px;
+    font-family: verdana, arial;
+    font-size: 12px;
+    font-weight: bold;
+}
+/*///// FORM STYLE /////*/
+#frmAccount {
+    width: 200px;
+    height: 550px;
+    margin-left: 20px;
+}
+
+#frmAccount input[type="text"] {
+    width: 140px;
+    height: 20px;
+    border: solid 1px;
+    margin-bottom: 10px;
+}
+
+#frmAccount input[type="text"]:focus {
+    border-color: #e14d0f;
+}
+
+#frmAccount input[type='submit'] {
+    width: 70px;
+    height: 30px;
+    border: 0;
+    margin-top: 10px;
+    background-color: black;
+    color: white;
+}
+
+#frmAccount input[type='submit']:hover 
+{   background-color: #e14d0f; 
+    color: white;
+}
+/*///// END OF FORM STYLE /////*/
+
+#accountImage {
+    width: 340px;
+    height: 600px;
+    float: right;
+}
+
+#accountImage img {
+    border: 0;
+}
+
+#accountErrorDiv {
+    display: none;
+    width: 300px;
+    height: 50px;
+    margin-left: 20px;
+    border: solid 1px #e14d0f;;
+    color: #e14d0f;
+    font-family: verdana, arial;
+    font-size: 12px;
+}

@@ -79,7 +79,7 @@
                 </p>
             </div>
 <!--///////////////////////////////NAVIGATION PANEL//////////////////////////-->
-            <form>
+            <form action="search.php" method="post">
                 <div id="navigationDiv">
                     <ul>
                         <li>                      <a class="logo" href="index.php"></a>               </li>

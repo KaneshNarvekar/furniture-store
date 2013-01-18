@@ -22,35 +22,35 @@
         <script type="text/javascript">
             
             //////// USING RAY'S JAVASCRIPT VALIDATION ///////
-            function btnUpdate()
-            {
-                var frmUpdate = document.getElementById("frmUpdate");
-                var qty = frmUpdate.qtyUpdate.value;
+function btnUpdate()
+{
+    var frmUpdate = document.getElementById("frmUpdate");
+    var qty = frmUpdate.qtyUpdate.value;
 
-                if (isEmpty(qty))
-                {
-                    alert("Please enter quantity!");
-                    return false;
-                }
+    if (isEmpty(qty))
+    {
+        alert("Please enter quantity!");
+        return false;
+    }
 
-                if (!isInteger(qty))
-                {
-                    alert("Please enter whole number!");
-                    return false;
-                }
+    if (!isInteger(qty))
+    {
+        alert("Please enter whole number!");
+        return false;
+    }
 
-                if (qty < 0)
-                {
-                    alert("Please enter positive number!")
-                    return false;
-                }
-                
-                if (qty > 50)
-                {
-                    alert("Please contact sales team when ordering more than 50!")
-                    return false;
-                }
-            }
+    if (qty < 0)
+    {
+        alert("Please enter positive number!")
+        return false;
+    }
+
+    if (qty > 50)
+    {
+        alert("Please contact sales team when ordering more than 50!")
+        return false;
+    }
+}
             function checkout()
             {
                 alert("Please log in to checkout");
@@ -91,7 +91,7 @@
                 </p>
             </div>
 <!--///////////////////////////////NAVIGATION PANEL//////////////////////////-->
-            <form>
+            <form action="search.php" method="post">
                 <div id="navigationDiv">
                     <ul>
                         <li>                      <a class="logo" href="index.php"></a>               </li>

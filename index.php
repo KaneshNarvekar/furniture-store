@@ -50,6 +50,7 @@
                     speed: 800,
                     timeout: 3000,
                     pager:  '#ulThumbs',
+                    pause: 1,
                     pagerAnchorBuilder: function(idx, slide) 
                     {
                         // return sel string for existing anchor
@@ -116,13 +117,13 @@
 <!--///////////////////////////////END OF NAVIGATION/////////////////////////-->
 
         <div id="indexBoxDiv1">
-            <div id="imgSlides">
-                <img class="imgFirst" src="css/images/imgCenter1W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-                <img class="imgOthers" src="css/images/imgCenter2W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-                <img class="imgOthers" src="css/images/imgCenter3W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-                <img class="imgOthers" src="css/images/imgCenter4W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-                <img class="imgOthers" src="css/images/imgCenter5W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-            </div>
+<div id="imgSlides">
+    <img class="imgFirst" src="css/images/imgCenter1W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+    <img class="imgOthers" src="css/images/imgCenter2W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+    <img class="imgOthers" src="css/images/imgCenter3W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+    <img class="imgOthers" src="css/images/imgCenter4W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+    <img class="imgOthers" src="css/images/imgCenter5W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+</div>
 
             <ul id="ulThumbs">
                 <li><a href="#"><img src="css/images/imgThumb1W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>

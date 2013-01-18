@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Login &#124; DAVA</title>
+        <title>Account &#124; DAVA</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
         <link href="css/home.css" rel="stylesheet" type="text/css" />
@@ -26,7 +26,7 @@
         <div id="container">
             <div id="headerDiv">
 <!--/////////////////////////// WELCOME USER ////////////////////////////////-->  
-                <form id='frmLogout' method="post">
+                
                 <?php
                 if (isset($_POST["btnLogout"]))
                 {
@@ -35,26 +35,22 @@
                 if (isset($_SESSION["customer"]))
                 {
                     $custName = $_SESSION["customer"]["name"];
-                    $custEmail = $_SESSION["customer"]["email"];
-                    echo "<span id='custName'>
-                                Welcome,&nbsp;<a id='aCustName' href='account.php?custEmail=$custEmail'>$custName</a>
-                                &nbsp;&nbsp;&nbsp;
-                                <input type='submit' name='btnLogout' value='(Logout)'/>
-                          </span>";
+                    echo "<span id='welcomeSpan'><a id='aWelcome' href='account.php'>Welcome, $custName</a></span>";
                     echo "  <script> 
-                                $(function() 
-                                    {
-                                        $('#login').remove();
-                                    })
+                            $(function() 
+                                {
+                                    $('#login').remove();
+                                })
                             </script>";
                 }
                 ?>
-                </form>
-<!--///////////////////////// END OF WELCOME USER ///////////////////////////--> 
+<!--///////////////////////// END OF WELCOME USER ///////////////////////////-->  
                 <p>
-                   <a id="login" href="#">login</a>
-                   &#124;
-                   <a href="basket.php">my cart&nbsp;<?php $size = sizeof($_SESSION["basket"]); echo "<span id='nItems'>$size</span>"; ?>&nbsp;items</a>
+                    <a id="login" href="login.php">login &#124;</a>
+                    <a id="cart" href="basket.php">
+                        <img src="css/images/imgCartW26xH26.png" width="26" height="26" alt="Cart Image"/>
+                        my cart&nbsp;<?php $size = sizeof($_SESSION["basket"]); echo "$size"; ?>&nbsp;items
+                    </a>
                 </p>
             </div>
 <!--///////////////////////////////NAVIGATION PANEL//////////////////////////-->
@@ -79,20 +75,15 @@
                 $resultSet = mysql_query($query);
                 if (!$resultSet) die("<ERROR: Cannot execute $query>");
                 $fetchedRow = mysql_fetch_assoc($resultSet);
-
+                
+                if ((isset($_REQUEST["btnLogout"])))
+                {
+                    unset($_SESSION["customer"]);
+                    header("Location: index.php");
+                }
                 if ($fetchedRow == null)
                 {
-                    echo "<div id='accountBoxDiv'>
-                            <div id='accountThickLine'></div> 
-                            <div id='accountDiv'>
-                                <h3>There is something wrong with your account.</h3>
-                                <p>Please contact customer service for more information.</p>
-                                <div id='accountImage'>
-                                    <img src='css/images/davaW340xH600.jpg' width='340' height='600' alt='account image'/>
-                                </div>
-                                <div id='loginThickLine'></div>    
-                             </div>
-                          </div>";
+                    header("Location: index.php");
                 }
                 else if (isset($_REQUEST["btnUpdate"]))           
                 {
@@ -100,7 +91,6 @@
                     $lastName = $_GET["txtLastName"];
                     $postEmail = $_GET["txtEmail"];
                     $pwd = $_GET["txtPwd"];
-                    $verifyPwd = $_GET["txtVerifyPwd"];
                     $address = $_GET["txtAddress"];
                     $postCode = $_GET["txtPostCode"];
                     $cardNo = $_GET["txtCardNo"];
@@ -141,10 +131,6 @@
                             $errorMessage = "ERROR: Password length must be less than 30 characters";
                         }
                     }
-                    else if ($pwd != $verifyPwd)
-                    {
-                        $errorMessage = "ERROR: Passwords doesn't match!";
-                    }
                     else if (!preg_match("/^([0-9]+)([A-Z',])+$/i", $rdyAddress) || strlen($rdyAddress) > 50)
                     {
                         $errorMessage = "ERROR: Address is invalid, it must be in the format: houseNo street city";
@@ -176,7 +162,7 @@
 
                         if ($fetchedRow != null)
                         {
-                            $errorMessage = "ERROR: Cannot register with this email, it is already registered.";
+                            $errorMessage = "ERROR: Email you want to change is already registered with another account.";
                         }
                         else
                         {
@@ -194,6 +180,10 @@
                             $tempName = $firstName." ".$lastName;
                             $_SESSION["customer"]["name"] = $tempName;
                             $_SESSION["customer"]["email"] = $postEmail;
+                            $_SESSION["customer"]["password"] = $pwd;
+                            $_SESSION["customer"]["address"] = $address;
+                            $_SESSION["customer"]["postCode"] = $postCode;
+                            $_SESSION["customer"]["cardNo"] = $cardNo;
                             header("Location: account.php?congrat=yes");
                         }
                     }
@@ -215,7 +205,6 @@
                     $firstName = $fetchedRow["firstName"];
                     $lastName = $fetchedRow["lastName"];
                     $pwd = $fetchedRow["password"];
-                    $verifyPwd = $pwd;
                     $address = $fetchedRow["address"];
                     $postCode = $fetchedRow["postCode"];
                     $cardNo = $fetchedRow["cardNo"];
@@ -241,33 +230,31 @@
                            </script>";
                         }
                     ?>
-
                     <form id="frmAccount">
                         <span class="spanInputs">First Name:</span>
                         <input type="text" name="txtFirstName" value="<?php echo $firstName ?>"/>
-                        
+
                         <span class="spanInputs">Last Name:</span>
                         <input type="text" name="txtLastName" value="<?php echo $lastName ?>"/>
-                        
+
                         <span class="spanInputs">Email Address:</span>
                         <input type="text" name="txtEmail" value="<?php echo $email?>"/>
-                        
-                        <span class="spanInputs">Create Password:</span>
+
+                        <span class="spanInputs">Password:</span>
                         <input type="text" name="txtPwd" value="<?php echo $pwd ?>"/>
-                        
-                        <span class="spanInputs">Verify Password:</span>
-                        <input type="text" name="txtVerifyPwd" value="<?php echo $verifyPwd ?>"/>
-                        
+
                         <span class="spanInputs">Address:</span>
                         <input type="text" name="txtAddress" value="<?php echo $address ?>"/>
-                        
+
                         <span class="spanInputs">Post Code:</span>
                         <input type="text" name="txtPostCode" value="<?php echo $postCode ?>"/>
-                        
+
                         <span class="spanInputs">Card No:</span>
                         <input type="text" name="txtCardNo" value="<?php echo $cardNo ?>"/>
-                        
+
                         <input type="submit" name="btnUpdate" value="Update"/>
+
+                        <input id="btnLogout" type="submit" name="btnLogout" value="Logout"/>
                     </form>
                 </div>
 <!--/////////////////////////// END OF ACCOUNT DIV //////////////////////////-->

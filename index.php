@@ -1,6 +1,45 @@
 <?php
     session_start();
-    if (!isset($_SESSION["basket"]))
+    if (isset($_COOKIE["basket"]))
+    {
+        $i = 0;
+        foreach ($_COOKIE["basket"] as $name => $value)
+        {
+            if ($i == 0)
+            {
+                $ids = explode(":", $value);
+            }
+            if ($i == 1)
+            {
+                $names = explode(":", $value);
+            }
+            if ($i == 2)
+            {
+                $prices = explode(":", $value);
+            }
+            if ($i == 3)
+            {
+                $qtys = explode(":", $value);
+            }
+            if ($i == 4)
+            {
+                $imageNames = explode(":", $value);
+            }
+            if ($i == 5)
+            {
+                $types = explode(":", $value);
+            }
+            $i = $i + 1;
+        }
+        $sizeIds = sizeof($ids);
+        for ($i = 0; $i <  $sizeIds; $i++)
+        {
+            $basket[] = array("id" => $ids[$i], "name" => $names[$i], "price" => $prices[$i], "qty" => $qtys[$i], "imageName" => $imageNames[$i], "types" => $types[$i]);
+        }
+        $_SESSION["basket"] = $basket;
+        
+    }
+    else if (!isset($_SESSION["basket"]))
     {
         $basket = array();
         $_SESSION["basket"] = $basket;
@@ -44,12 +83,7 @@
                     prev: '#left',
                     nowrap: 0
                 });
-            })
-            
-//            $(function() 
-//            {
-//                $('#fade').fadeOut().remove();
-//            });
+            });
         </script>
     </head>
 <!--///////////////////////////////END OF HEAD///////////////////////////////-->    
@@ -58,7 +92,6 @@
         <div id="containerDiv">
             <div id="headerDiv">
 <!--/////////////////////////// WELCOME USER ////////////////////////////////-->  
-                
                 <?php
                 if (isset($_POST["btnLogout"]))
                 {
@@ -79,7 +112,6 @@
 <!--///////////////////////// END OF WELCOME USER ///////////////////////////--> 
                 <p>
                     <a id="login" href="login.php">login &#124;</a>
-                    
                     <a id="cart" href="basket.php">
                         <img src="css/images/imgCartW26xH26.png" width="26" height="26" alt="Cart Image"/>
                         my cart&nbsp;<?php $size = sizeof($_SESSION["basket"]); echo "$size"; ?>&nbsp;items
@@ -87,7 +119,7 @@
                 </p>
             </div>
 <!--///////////////////////////////NAVIGATION PANEL//////////////////////////-->
-            <form>
+            <form action="search.php" method="post">
                 <div id="navigationDiv">
                     <ul>
                         <li>                      <a class="logo" href="index.php"></a>               </li>
@@ -99,9 +131,6 @@
                     </ul>
                 </div>
             </form>
-        <div id="fade">
-            <span id="dava">asdfdsdfsdfsd</span> 
-        </div>
 <!--///////////////////////////////END OF NAVIGATION/////////////////////////-->
 
         <div id="indexBoxDiv1">

@@ -38,8 +38,9 @@
 }
 /*///// FORM STYLE /////*/
 #frmAccount {
-    width: 200px;
-    height: 550px;
+    width: 400px;
+    height: 500px;
+    margin-top: 20px;
     margin-left: 20px;
 }
 
@@ -88,4 +89,8 @@
     color: #e14d0f;
     font-family: verdana, arial;
     font-size: 12px;
+}
+
+#btnLogout {
+    margin-left: 198px;
 }

@@ -1,5 +1,6 @@
 <?php
     session_start();
+    ob_start();
     if (!isset($_SESSION["basket"]))
     {
         $basket = array();
@@ -43,6 +44,17 @@
                     alert("Please enter positive number!")
                     return false;
                 }
+                
+                if (qty > 50)
+                {
+                    alert("Please contact sales team when ordering more than 50!")
+                    return false;
+                }
+            }
+            function checkout()
+            {
+                alert("Please log in to checkout");
+                return false;
             }
         </script>
     </head>
@@ -51,7 +63,7 @@
         <div id="container">
             <div id="headerDiv">
 <!--/////////////////////////// WELCOME USER ////////////////////////////////-->  
-                <form id='frmLogout' method="post">
+                
                 <?php
                 if (isset($_POST["btnLogout"]))
                 {
@@ -60,26 +72,22 @@
                 if (isset($_SESSION["customer"]))
                 {
                     $custName = $_SESSION["customer"]["name"];
-                    $custEmail = $_SESSION["customer"]["email"];
-                    echo "<span id='custName'>
-                                Welcome,&nbsp;<a id='aCustName' href='account.php?custEmail=$custEmail'>$custName</a>
-                                &nbsp;&nbsp;&nbsp;
-                                <input type='submit' name='btnLogout' value='(Logout)'/>
-                          </span>";
+                    echo "<span id='welcomeSpan'><a id='aWelcome' href='account.php'>Welcome, $custName</a></span>";
                     echo "  <script> 
-                                $(function() 
-                                    {
-                                        $('#login').remove();
-                                    })
+                            $(function() 
+                                {
+                                    $('#login').remove();
+                                })
                             </script>";
                 }
                 ?>
-                </form>
 <!--///////////////////////// END OF WELCOME USER ///////////////////////////--> 
                 <p>
-                   <a id="login" href="login.php">login</a>
-                   &#124;
-                   <a href="basket.php">my cart&nbsp;<?php $size = sizeof($_SESSION["basket"]); echo "<span id='nItems'>$size</span>"; ?>&nbsp;items</a>
+                    <a id="login" href="login.php">login &#124;</a>
+                    <a id="cart" href="basket.php">
+                        <img src="css/images/imgCartW26xH26.png" width="26" height="26" alt="Cart Image"/>
+                        my cart&nbsp;<?php $size = sizeof($_SESSION["basket"]); echo "<span id='nItems'>$size</span>"; ?>&nbsp;items
+                    </a>
                 </p>
             </div>
 <!--///////////////////////////////NAVIGATION PANEL//////////////////////////-->
@@ -138,6 +146,7 @@
                                 else
                                 {
                                     $basket[$key]["qty"] = $qtyToUpdate;
+                                    
                                 }
                             }
                             $types = $item["types"];
@@ -157,7 +166,7 @@
                             if ($remove)
                             {
                                 unset($basket[$key]);   // REMOVING ITEM FROM THE BASKET
-                                $_SESSION["basket"] = array_values($basket);    // UPDATE SESSION BASKET
+                                $_SESSION["basket"] = array_values($basket); // UPDATE SESSION BASKET
                                 $nItems = sizeof($_SESSION["basket"]);
                                 echo "  <script>
                                             $(function() 
@@ -169,6 +178,36 @@
                                             }); 
                                         </script>";
                             }
+                            $_SESSION["basket"] = $basket;
+                            $basketSize = sizeof($_SESSION["basket"]);
+                            $setId = "";
+                            $setName = "";
+                            $setPrice = "";
+                            $setQty = "";
+                            $setImageName = "";
+                            $setTypes = "";
+                            for ($i = 0; $i < $basketSize; $i++)
+                            {
+                                $setId        .= ":".$_SESSION["basket"][$i]["id"]; 
+                                $setName      .= ":".$_SESSION["basket"][$i]["name"]; 
+                                $setPrice     .= ":".$_SESSION["basket"][$i]["price"]; 
+                                $setQty       .= ":".$_SESSION["basket"][$i]["qty"];
+                                $setImageName .= ":".$_SESSION["basket"][$i]["imageName"]; 
+                                $setTypes     .= ":".$_SESSION["basket"][$i]["types"];
+                            }
+                            $subId = substr($setId, 1);
+                            $subName = substr($setName, 1);
+                            $subPrice = substr($setPrice, 1);
+                            $subQty = substr($setQty, 1);
+                            $subImageName = substr($setImageName, 1);
+                            $subTypes = substr($setTypes, 1);
+
+                            setcookie("basket[id]", $subId, time()+ 3600);
+                            setcookie("basket[name]", $subName, time()+ 3600);
+                            setcookie("basket[price]", $subPrice, time()+ 3600);
+                            setcookie("basket[qty]", $subQty, time()+ 3600);
+                            setcookie("basket[imageName]", $subImageName, time()+ 3600);
+                            setcookie("basket[types]", $subTypes, time()+ 3600);
                         }
                         /////////////// END OF DISPLAYING BASKET DATA //////////
 
@@ -210,7 +249,17 @@
                     </table>
                     <div id="checkOutDiv">
                         <a id="aContinueShop" href="index.php">Continue shopping</a>
-                        <a id="aCheckout" href="checkout.php">Proceed to checkout</a>
+                        <?php
+                            if (isset($_SESSION["customer"]))
+                            {
+                                echo "<a id='aCheckout' href='checkout.php'>Proceed to checkout</a>";
+                            }
+                            else
+                            {
+                                echo "<a onclick='return checkout();' id='aCheckout' href='checkout.php'>Proceed to checkout</a>";
+                            }
+                        ?>
+                        
                     </div>
                     <div id="basketThickLine">
                         
@@ -235,4 +284,5 @@
 <!--///////////////////////////////END OF CONTAINER/////////////////////////-->
     </body>
 </html>
+<?php ob_flush(); ?>
 

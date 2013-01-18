@@ -56,18 +56,18 @@
     margin-left: 50px;
 }
 
-#hasAccountDiv input[type="text"] {
+#hasAccountDiv input[type="text"], #hasPassword {
     width: 140px;
     height: 20px;
     border: solid 1px;
     margin-bottom: 10px;
 }
 
-#hasAccountDiv input[type="text"]:focus {
+#frmHas input[type="text"]:focus, #hasPassword:focus {
     border-color: #e14d0f;
 }
 
-#hasAccountDiv input[type="submit"] {
+#frmHas input[type="submit"] {
     width: 70px;
     height: 30px;
     border: 0;
@@ -75,7 +75,7 @@
     color: white;
 }
 
-#hasAccountDiv input[type="submit"]:hover { background-color: #e14d0f; color: black;}
+#frmHas input[type="submit"]:hover { background-color: #e14d0f; color: black;}
 
 .spanInputs {
     width: 200px;
@@ -110,7 +110,7 @@
     margin-left: 50px;
 }
 
-#hasNotAccountDiv input[type="text"] {
+#frmHasNot input[type="text"], input[type="password"] {
     width: 200px;
     height: 20px;
     margin-right: 80px;
@@ -118,7 +118,7 @@
     margin-bottom: 10px;
 }
 
-#hasNotAccountDiv input[type="text"]:focus {
+#frmHasNot input[type="text"]:focus, input[type="password"]:hover {
     border-color: #e14d0f;
 }
 

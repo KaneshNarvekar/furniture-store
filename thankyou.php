@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Login &#124; DAVA</title>
+        <title>Thank you &#124; DAVA</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
         <link href="css/home.css" rel="stylesheet" type="text/css" />
@@ -26,6 +26,10 @@
 <!--/////////////////////////// WELCOME USER ////////////////////////////////-->  
                 
                 <?php
+                if (!isset($_SESSION["customer"]))
+                {
+                    header("Location: index.php");
+                }
                 if (isset($_POST["btnLogout"]))
                 {
                     unset($_SESSION["customer"]);

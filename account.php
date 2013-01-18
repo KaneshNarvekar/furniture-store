@@ -70,18 +70,12 @@
                 include_once ("connect.php");
                 $errorMessage = "";
                 
-                $email = $_SESSION["customer"]["email"];
-                $query = "SELECT * FROM customers where email='$email'";   
-                $resultSet = mysql_query($query);
-                if (!$resultSet) die("<ERROR: Cannot execute $query>");
-                $fetchedRow = mysql_fetch_assoc($resultSet);
-                
                 if ((isset($_REQUEST["btnLogout"])))
                 {
                     unset($_SESSION["customer"]);
                     header("Location: index.php");
                 }
-                if ($fetchedRow == null)
+                if (!isset($_SESSION["customer"]))
                 {
                     header("Location: index.php");
                 }
@@ -166,11 +160,13 @@
                         }
                         else
                         {
+                            $salt= "pg!@*";
+                            $hashedPwd = "$salt$pwd";
                             $createQuery = "UPDATE customers 
                                              SET firstName = '$firstName', 
                                                  lastName = '$lastName', 
                                                  email = '$postEmail', 
-                                                 password = '$pwd', 
+                                                 password = '$hashedPwd', 
                                                  address = '$address', 
                                                  postCode = '$postCode', 
                                                  cardNo = '$cardNo'
@@ -179,6 +175,8 @@
                             if (!$createResult) die("<ERROR: Cannot execute $createQuery>");
                             $tempName = $firstName." ".$lastName;
                             $_SESSION["customer"]["name"] = $tempName;
+                            $_SESSION["customer"]["firstName"] = $firstName;
+                            $_SESSION["customer"]["lastName"] = $lastName;
                             $_SESSION["customer"]["email"] = $postEmail;
                             $_SESSION["customer"]["password"] = $pwd;
                             $_SESSION["customer"]["address"] = $address;
@@ -202,12 +200,13 @@
                                 </script>
                                 ";
                     }
-                    $firstName = $fetchedRow["firstName"];
-                    $lastName = $fetchedRow["lastName"];
-                    $pwd = $fetchedRow["password"];
-                    $address = $fetchedRow["address"];
-                    $postCode = $fetchedRow["postCode"];
-                    $cardNo = $fetchedRow["cardNo"];
+                    $firstName = $_SESSION["customer"]["firstName"];
+                    $lastName = $_SESSION["customer"]["lastName"];
+                    $email = $_SESSION["customer"]["email"];
+                    $pwd = $_SESSION["customer"]["password"];
+                    $address = $_SESSION["customer"]["address"];
+                    $postCode = $_SESSION["customer"]["postCode"];
+                    $cardNo = $_SESSION["customer"]["cardNo"];
                 }
             ?>
             <div id="accountBoxDiv">

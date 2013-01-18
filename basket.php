@@ -166,7 +166,7 @@
                             if ($remove)
                             {
                                 unset($basket[$key]);   // REMOVING ITEM FROM THE BASKET
-                                $_SESSION["basket"] = array_values($basket); // UPDATE SESSION BASKET
+                                $_SESSION["basket"] = array_values($basket);
                                 $nItems = sizeof($_SESSION["basket"]);
                                 echo "  <script>
                                             $(function() 
@@ -178,7 +178,7 @@
                                             }); 
                                         </script>";
                             }
-                            $_SESSION["basket"] = $basket;
+                            $_SESSION["basket"] = array_values($basket); // UPDATE SESSION BASKET
                             $basketSize = sizeof($_SESSION["basket"]);
                             $setId = "";
                             $setName = "";

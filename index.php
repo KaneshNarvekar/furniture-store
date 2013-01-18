@@ -5,30 +5,12 @@
         $i = 0;
         foreach ($_COOKIE["basket"] as $name => $value)
         {
-            if ($i == 0)
-            {
-                $ids = explode(":", $value);
-            }
-            if ($i == 1)
-            {
-                $names = explode(":", $value);
-            }
-            if ($i == 2)
-            {
-                $prices = explode(":", $value);
-            }
-            if ($i == 3)
-            {
-                $qtys = explode(":", $value);
-            }
-            if ($i == 4)
-            {
-                $imageNames = explode(":", $value);
-            }
-            if ($i == 5)
-            {
-                $types = explode(":", $value);
-            }
+            if ($i == 0){ $ids = explode(":", $value);}
+            if ($i == 1){ $names = explode(":", $value);}
+            if ($i == 2){$prices = explode(":", $value);}
+            if ($i == 3){$qtys = explode(":", $value);}
+            if ($i == 4){$imageNames = explode(":", $value);}
+            if ($i == 5){$types = explode(":", $value);}
             $i = $i + 1;
         }
         $sizeIds = sizeof($ids);

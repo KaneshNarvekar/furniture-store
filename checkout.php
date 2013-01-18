@@ -103,7 +103,7 @@
                         </tr>
                         <tr><td class='tdFirstThinLine' colspan='5'> </td></tr>
                         <?php
-                        if (!isset($_SESSION["basket"]))
+                        if (!isset($_SESSION["customer"]) || !isset($_SESSION["basket"]))
                         {
                             header("Location: index.php");
                         }

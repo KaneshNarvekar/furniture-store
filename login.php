@@ -85,10 +85,10 @@
                 $hasErrorMessage = "";
                 
                  //////////////////////// BUTTON LOGIN /////////////////////
-                if (isset($_REQUEST["btnLogin"]))
+                if (isset($_POST["btnLogin"]))
                 {
-                    $hasEmail = $_GET["txtEmail"];
-                    $hasPwd = $_GET["txtPwd"];
+                    $hasEmail = $_POST["txtEmail"];
+                    $hasPwd = $_POST["txtPwd"];
                     
                     /////////////////// QUERY EMAIL EXISTS ? ///////////////
                     $query = "SELECT * FROM customers where email='$hasEmail'";   
@@ -103,42 +103,44 @@
                     }
                     else
                     {
-                        $existingPwd = $fetchedRow["password"];
-                        if ($existingPwd != $hasPwd)
+                        $salt= "pg!@*";
+                        $hashedPwd = md5($salt.$hasPwd);
+                        $query = "SELECT * FROM customers where email='$hasEmail' and password = '$hashedPwd'";   
+                        $resultSet = mysql_query($query);
+                        if (!$resultSet) die("<ERROR: Cannot execute $query>");
+                        
+                        if ($resultSet != null)
                         {
-                            $hasErrorMessage = "ERROR: Password incorrect";
-                        }
-                        else
-                        {
-                            $custName = $fetchedRow["firstName"];
-                            $custName = $custName." ".$fetchedRow["lastName"];
+                            $firstName = $fetchedRow["firstName"];
+                            $lastName = $fetchedRow["lastName"];
+                            $custName = $firstName." ".$lastName;
                             $hasAddress = $fetchedRow["address"];
                             $hasPostCode = $fetchedRow["postCode"];
                             $hasCardNo = $fetchedRow["cardNo"];
-                            $_SESSION["customer"] = array("name" => $custName, "email" => $hasEmail, "address" => "$hasAddress", "postCode" => "$hasPostCode", "cardNo" => "$hasCardNo");;
+                            $_SESSION["customer"] = array("firstName" => $firstName, "lastName" => $lastName, "name" => $custName, "email" => $hasEmail, "password" =>$hasPwd, "address" => "$hasAddress", "postCode" => "$hasPostCode", "cardNo" => "$hasCardNo");;
                             header("Location: index.php");
+                        }
+                        else
+                        {
+                            $hasErrorMessage = "ERROR: Password incorrect";
                         }
                     }
                 }
                  //////////////////////// BUTTON REGISTER /////////////////////
-                if (isset($_REQUEST["btnRegister"]))
+                if (isset($_POST["btnRegister"]))
                 {
-                    $firstName = $_GET["txtFirstName"];
-                    $lastName = $_GET["txtLastName"];
-                    $email = $_GET["txtEmail"];
-                    $pwd = $_GET["txtPwd"];
-                    $verifyPwd = $_GET["txtVerifyPwd"];
-                    $address = $_GET["txtAddress"];
-                    $postCode = $_GET["txtPostCode"];
-                    $cardNo = $_GET["txtCardNo"];
+                    $firstName = $_POST["txtFirstName"];
+                    $lastName = $_POST["txtLastName"];
+                    $email = $_POST["txtEmail"];
+                    $pwd = $_POST["txtPwd"];
+                    $verifyPwd = $_POST["txtVerifyPwd"];
+                    $address = $_POST["txtAddress"];
+                    $postCode = $_POST["txtPostCode"];
+                    $cardNo = $_POST["txtCardNo"];
                     
                     $rdyAddress = preg_replace('/\s+/', '', $address);
                     
                     include_once "phpValidation.php";
-                    if (strlen("12345") > 5)
-                    {
-                        echo "fuck off bitch";
-                    }
                     if (!preg_match("/^[A-Z]+$/i", $firstName) || strlen($firstName) > 30)
                     {
                         $errorMessage = "ERROR: First name must contain only letters";
@@ -210,7 +212,9 @@
                         }
                         else
                         {
-                            $createQuery = "INSERT INTO customers VALUES ('$firstName', '$lastName', '$email', '$pwd', '$address', '$postCode', '$cardNo')";
+                            $salt= "pg!@*";
+                            $hashedPassword = md5($salt.$pwd);
+                            $createQuery = "INSERT INTO customers VALUES ('$firstName', '$lastName', '$email', '$hashedPassword', '$address', '$postCode', '$cardNo')";
                             $createResult = mysql_query($createQuery);
                             if (!$createResult) die("<ERROR: Cannot execute $createQuery>");
                             echo "  <script> 
@@ -248,12 +252,12 @@
 <!--////////////////////////////// HAS ACCOUNT ////////////////////////////-->
                 <div id="hasAccountDiv">
                     <h5>Existing Customers</h5>
-                    <form>
+                    <form id="frmHas" method="post">
                         <span class="spanInputs">Email Address:</span>
                         <input type="text" name="txtEmail" value="<?php echo $hasEmail ?>"/>
                         
                         <span class="spanInputs">Password:</span>
-                        <input type="text" name="txtPwd" value="<?php echo $hasPwd ?>"/>
+                        <input id="hasPassword" type="password" name="txtPwd" value="<?php echo $hasPwd ?>"/>
                         
                         <input type="submit" name="btnLogin" value="Login"/>
                     </form>
@@ -278,7 +282,7 @@
                         }
                     ?>
 <!--///////////////////// END OF DISPLAYING ERROR MESSAGE ///////////////////-->  
-                    <form id="frmHasNot">
+                    <form id="frmHasNot" method="post">
                         <span class="spanInputs">First Name:</span>
                         <input type="text" name="txtFirstName" value="<?php echo $firstName ?>"/>
                         
@@ -289,10 +293,10 @@
                         <input type="text" name="txtEmail" value="<?php echo $email?>"/>
                         
                         <span class="spanInputs">Create Password:</span>
-                        <input type="text" name="txtPwd" value="<?php echo $pwd ?>"/>
+                        <input type="password" name="txtPwd" value="<?php echo $pwd ?>"/>
                         
                         <span class="spanInputs">Verify Password:</span>
-                        <input type="text" name="txtVerifyPwd" value="<?php echo $verifyPwd ?>"/>
+                        <input type="password" name="txtVerifyPwd" value="<?php echo $verifyPwd ?>"/>
                         
                         <span class="spanInputs">Address:</span>
                         <input type="text" name="txtAddress" value="<?php echo $address ?>"/>

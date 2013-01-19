@@ -110,7 +110,7 @@
                         <li>                      <a class="button" href="chests.php">CHESTS</a>      </li>
                         <li>                      <a class="button" href="beds.php">BEDS</a>          </li>
                         <li class="txtNav">       <input type="text" name="txtSearch"/>               </li>
-                        <li class="searchNav">    <input type="submit" name="btnSearch" value="a"/>    </li>
+                        <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>    </li>
                     </ul>
                 </div>
             </form>

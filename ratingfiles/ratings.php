@@ -17,7 +17,7 @@ define('NRRTG', 0);
 define('USRRATE', 1);
 if(USRRATE !== 1) {
   if(!isset($_SESSION)) session_start();
-  if(isset($_SESSION['username'])) define('RATER', $_SESSION['username']);
+  if(isset($_SESSION['customer'])) define('RATER', $_SESSION['customer']);
 }
 
      /* From Here no need to modify */

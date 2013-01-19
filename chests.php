@@ -81,7 +81,6 @@
                     $limit = 9;
                     $startpoint = ($page * $limit) - $limit;
                     $statement = "FROM products where type=\"chest\"";
-                    $type = "chest";
                     $query = "SELECT * FROM products where type = \"chest\" LIMIT {$startpoint} , {$limit}";
                     $resultSet = mysql_query($query);
                     if (!$resultSet) die("<ERROR: Cannot execute $query>");

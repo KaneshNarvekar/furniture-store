@@ -72,47 +72,44 @@
                 <div class="prodImages">
                     <a href="prodInfo.php?prodId=bed12&amp;type=bed"><img src="css/images/beds/imgBed1W300xH439.jpg" width="300" height="439" alt="Bed images"/></a>
                 </div>
-                
-<table id="productTable">
-    <?php
-    include_once ("connect.php");
-    include_once ("function.php");
+                <table id="productTable">
+                <?php
+                include_once ("connect.php");
+                include_once ("function.php");
 
-    $page = (int) (!isset($_GET["page"]) ? 1 : $_GET["page"]);
-    $limit = 9;
-    $startpoint = ($page * $limit) - $limit;
-    $statement = "FROM products where type=\"bed\"";
-    $type = "bed";
-    $query = "SELECT * FROM products where type = \"bed\" LIMIT {$startpoint} , {$limit}";
-    $resultSet = mysql_query($query);
-    if (!$resultSet) die("<ERROR: Cannot execute $query>");
-    $fetchedRow = mysql_fetch_row($resultSet);
-
-    for ($rowNumber = 0; $rowNumber < 3; $rowNumber++)
-    {
-        echo "<tr>";
-        for ($columnNumber = 0; $columnNumber < 3; $columnNumber++)
-        {
-            if ($fetchedRow == null) 
-            {
-                echo "<td></td>";
-            }
-            else
-            {
-                $id = $fetchedRow[0];
-                $name = $fetchedRow[1];
-                $imageName = $fetchedRow[2];
-                $price = $fetchedRow[5];
-                $displayImage = "<img src=\"css/images/beds/$imageName\" width='158' height='158' alt=\"tableImage\"/>";
-                echo " <td><a href=\"prodInfo.php?prodId=$id\"> $displayImage <p>$name <span class=\"price\">£$price</span></p></a></td> ";
+                $page = (int) (!isset($_GET["page"]) ? 1 : $_GET["page"]);
+                $limit = 9;
+                $startpoint = ($page * $limit) - $limit;
+                $statement = "FROM products where type=\"bed\"";
+                $query = "SELECT * FROM products where type = \"bed\" LIMIT {$startpoint} , {$limit}";
+                $resultSet = mysql_query($query);
+                if (!$resultSet) die("<ERROR: Cannot execute $query>");
                 $fetchedRow = mysql_fetch_row($resultSet);
-            }
-        }
-        echo "</tr>";
-    }
-    ?>    
-</table>
-                
+
+                for ($rowNumber = 0; $rowNumber < 3; $rowNumber++)
+                {
+                    echo "<tr>";
+                    for ($columnNumber = 0; $columnNumber < 3; $columnNumber++)
+                    {
+                        if ($fetchedRow == null) 
+                        {
+                            echo "<td></td>";
+                        }
+                        else
+                        {
+                            $id = $fetchedRow[0];
+                            $name = $fetchedRow[1];
+                            $imageName = $fetchedRow[2];
+                            $price = $fetchedRow[5];
+                            $displayImage = "<img src=\"css/images/beds/$imageName\" width='158' height='158' alt=\"tableImage\"/>";
+                            echo " <td><a href=\"prodInfo.php?prodId=$id\"> $displayImage <p>$name <span class=\"price\">£$price</span></p></a></td> ";
+                            $fetchedRow = mysql_fetch_row($resultSet);
+                        }
+                    }
+                    echo "</tr>";
+                }
+                ?>    
+                </table>
                 <div class="prodImages">
                     <img src="css/images/beds/imgBed2W300xH439.jpg" width="300" height="439" alt="Bed images"/>
                 </div>

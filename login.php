@@ -99,7 +99,7 @@
                     
                     if ($fetchedRow == null)
                     {
-                        $hasErrorMessage = "ERROR: Such such email exists in our database";
+                        $hasErrorMessage = "ERROR: No such email exists in our database";
                     }
                     else
                     {

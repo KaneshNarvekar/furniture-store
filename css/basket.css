@@ -187,3 +187,16 @@
     background-color: grey;
 }
 
+#basketErrorDiv {
+    display: none;
+    width: 700px;
+    height: 40px;
+    margin: 0 auto 0;
+    border: solid 1px #e14d0f;;
+}
+
+#basketErrorDiv h6 {
+    margin-left: 30px;
+    font-family: verdana, arial;
+    color: #e14d0f;
+}

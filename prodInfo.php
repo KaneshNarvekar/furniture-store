@@ -29,13 +29,6 @@
                 $(pager).find('li').removeClass('activeLI').filter('li:eq('+currSlideIndex+')').addClass('activeLI');
             };
             
-            $.fn.cycle.updateActivePagerLink = function(pager, currSlide, clsName) {
-                $(pager).each(function() {
-                    console.log(clsName + '; ' + currSlide ); 
-                    $(this).children().removeClass('activeLI').filter(':eq('+currSlide+')').addClass('activeLI');
-                });
-            };
-            
             $(document).ready(
             function()
             {
@@ -115,7 +108,7 @@
                     <a id="login" href="login.php">login &#124;</a>
                     <a id="cart" href="basket.php">
                         <img src="css/images/imgCartW26xH26.png" width="26" height="26" alt="Cart Image"/>
-                        my cart&nbsp;<?php $size = sizeof($_SESSION["basket"]); echo "$size"; ?>&nbsp;items
+                        my cart&nbsp;<?php $size = sizeof($_SESSION["basket"]); echo "<span id='nItems'>$size</span>"; ?>&nbsp;items
                     </a>
                 </p>
             </div>
@@ -133,11 +126,12 @@
                 </div>
             </form>
 <!--///////////////////////////////END OF NAVIGATION/////////////////////////-->
-            <div id="itemAddedDiv">
-                    <img src="css/images/rightSign.png" width="25" height="25" alt="rightSign"/>
-                    <h3>You have added this item to your basket!</h3>
-            </div>
             <div id="prodInfoBoxDiv">
+                <hr class='thickLine'/>
+                <div id="addNotificaiton">
+                    <h3><img src="css/images/rightSign.png" width="20" height="20" alt="rightSign"/>
+                        This item is added to your basket!</h3>
+                </div>
                 <?php
                 include_once ("connect.php");
                 $prodId = null;
@@ -148,42 +142,11 @@
                 if (isset($_GET["itemAdded"])) // IF ADDED SUCCESSFUL DISPLAY NOTIFICATION 
                 {
                     echo " <script> 
-                            $(function() 
-                                {
-                                    $('#itemAddedDiv').slideDown('slow');
-                                })
-                           </script>";
-                    $setId = "";
-                    $setName = "";
-                    $setPrice = "";
-                    $setQty = "";
-                    $setImageName = "";
-                    $setTypes = "";
-                    
-                    $size = sizeof($_SESSION["basket"]);
-                    
-                    for ($i = 0; $i < $size; $i++)
-                    {
-                        $setId        .= ":".$_SESSION["basket"][$i]["id"]; 
-                        $setName      .= ":".$_SESSION["basket"][$i]["name"]; 
-                        $setPrice     .= ":".$_SESSION["basket"][$i]["price"]; 
-                        $setQty       .= ":".$_SESSION["basket"][$i]["qty"];
-                        $setImageName .= ":".$_SESSION["basket"][$i]["imageName"]; 
-                        $setTypes     .= ":".$_SESSION["basket"][$i]["types"];
-                    }
-                    $subId = substr($setId, 1);
-                    $subName = substr($setName, 1);
-                    $subPrice = substr($setPrice, 1);
-                    $subQty = substr($setQty, 1);
-                    $subImageName = substr($setImageName, 1);
-                    $subTypes = substr($setTypes, 1);
-                    
-                    setcookie("basket[id]", $subId, time()+ 3600);
-                    setcookie("basket[name]", $subName, time()+ 3600);
-                    setcookie("basket[price]", $subPrice, time()+ 3600);
-                    setcookie("basket[qty]", $subQty, time()+ 3600);
-                    setcookie("basket[imageName]", $subImageName, time()+ 3600);
-                    setcookie("basket[types]", $subTypes, time()+ 3600);
+                        $(function() 
+                            {
+                                $('#addNotificaiton').slideDown();
+                            })
+                       </script>";
                 }
                 ///////////// SELECTING ITEM FROM DATABASE ///////////////
                 $query = "SELECT * FROM products where prodId='$prodId'";   
@@ -212,7 +175,7 @@
                     $BigImgNames = $fetchedRow["bigImageNames"];
                     $bigImgNamesArray = explode(":", $BigImgNames);
                     $bigImageArraySize = sizeof($bigImgNamesArray);
-                    echo "  <hr class='thickLine'/>
+                    echo "  
                             <div id='imgDivBg'>
                                 <div id='imgDiv'>
                                     <h2>$name</h2>
@@ -241,9 +204,7 @@
                     $descArray = explode("!!stop!!", $prodDesc);    // EXPLODE PRODUCT DESCRIPTION
                     echo "$descArray[0]";
                     ///////////// FORMS ARE DISPLAYED HERE///////////////
-                    echo "<form id='frmAddToBasket'> 
-                              <input type='hidden' name='prodId' value='$id'/>
-                              <input type='hidden' name='type' value='$type'/>
+                    echo "<form id='frmAddToBasket' method='post'> 
                               <p>
                                   GBP &pound;$price
                                   <input type='text' name='txtQty' value='1'/> 
@@ -252,10 +213,10 @@
                           </form>";
                     echo "$descArray[1]";
 
-                    if (isset($_REQUEST["btnAddToBasket"])) // IF ADD TO BASKET BUTTON CLICKED
+                    if (isset($_POST["btnAddToBasket"])) // IF ADD TO BASKET BUTTON CLICKED
                     {
                         $basket = $_SESSION["basket"];
-                        $qty = $_REQUEST["txtQty"];
+                        $qty = $_POST["txtQty"];
                         $item = array("id" => $id, "name" => $name, "price" => $price, "qty" => $qty, "imageName" => $imgName, "types" => $types);
 
                         $itemFound = false;
@@ -278,6 +239,39 @@
                         }
 
                         $_SESSION["basket"] = $basket; // UDPATE SESSION VARIABLE
+                        
+                        $setId = "";
+                        $setName = "";
+                        $setPrice = "";
+                        $setQty = "";
+                        $setImageName = "";
+                        $setTypes = "";
+
+                        $sessionSize = sizeof($_SESSION["basket"]);
+
+                        for ($i = 0; $i < $sessionSize; $i++)
+                        {
+                            $setId        .= ":".$_SESSION["basket"][$i]["id"]; 
+                            $setName      .= ":".$_SESSION["basket"][$i]["name"]; 
+                            $setPrice     .= ":".$_SESSION["basket"][$i]["price"]; 
+                            $setQty       .= ":".$_SESSION["basket"][$i]["qty"];
+                            $setImageName .= ":".$_SESSION["basket"][$i]["imageName"]; 
+                            $setTypes     .= ":".$_SESSION["basket"][$i]["types"];
+                        }
+                        $subId = substr($setId, 1);
+                        $subName = substr($setName, 1);
+                        $subPrice = substr($setPrice, 1);
+                        $subQty = substr($setQty, 1);
+                        $subImageName = substr($setImageName, 1);
+                        $subTypes = substr($setTypes, 1);
+
+                        setcookie("basket[id]", $subId, time()+ 3600);
+                        setcookie("basket[name]", $subName, time()+ 3600);
+                        setcookie("basket[price]", $subPrice, time()+ 3600);
+                        setcookie("basket[qty]", $subQty, time()+ 3600);
+                        setcookie("basket[imageName]", $subImageName, time()+ 3600);
+                        setcookie("basket[types]", $subTypes, time()+ 3600);
+                        
                         header("Location: prodInfo.php?prodId=" . $id . "&itemAdded=added"); //DISABLE REFRESH
                     }
                 }   // END OF ELSE IF FETCHED ROW NULL

@@ -19,12 +19,11 @@
         <script src="javascript/validation.js" type="text/javascript"></script>
         <script src="javascript/snow.js" type="text/javascript"></script>
     </head>
-    
     <body>
-        <div id="container">
+        <div id="thankContainer">
+            
             <div id="headerDiv">
 <!--/////////////////////////// WELCOME USER ////////////////////////////////-->  
-                
                 <?php
                 if (!isset($_SESSION["customer"]))
                 {

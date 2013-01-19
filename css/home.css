@@ -382,3 +382,13 @@ body
     border: solid 1px;
 }
 
+#cart img, #indexBoxDiv2 img{
+    border: none;
+}
+
+#indexBoxDiv2 img:focus {
+    border: none;
+}
+
+
+

@@ -11,7 +11,7 @@
   // Configure whether snow should disappear after x seconds (0=never):
   var hidesnowtime = 0;
   // Configure how much snow should drop down before fading ("windowheight" or "pageheight")
-  var snowdistance = "pageheight";
+  var snowdistance = "500";
 
 ///////////Stop Config//////////////////////////////////
 

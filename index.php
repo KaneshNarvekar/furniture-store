@@ -110,20 +110,20 @@
                         <li>                      <a class="button" href="chests.php">CHESTS</a>      </li>
                         <li>                      <a class="button" href="beds.php">BEDS</a>          </li>
                         <li class="txtNav">       <input type="text" name="txtSearch"/>               </li>
-                        <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>    </li>
+                        <li class="searchNav">    <input type="submit" name="btnSearch" value="a"/>    </li>
                     </ul>
                 </div>
             </form>
 <!--///////////////////////////////END OF NAVIGATION/////////////////////////-->
 
         <div id="indexBoxDiv1">
-<div id="imgSlides">
-    <img class="imgFirst" src="css/images/imgCenter1W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-    <img class="imgOthers" src="css/images/imgCenter2W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-    <img class="imgOthers" src="css/images/imgCenter3W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-    <img class="imgOthers" src="css/images/imgCenter4W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-    <img class="imgOthers" src="css/images/imgCenter5W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-</div>
+            <div id="imgSlides">
+                <img class="imgFirst" src="css/images/imgCenter1W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+                <img class="imgOthers" src="css/images/imgCenter2W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+                <img class="imgOthers" src="css/images/imgCenter3W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+                <img class="imgOthers" src="css/images/imgCenter4W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+                <img class="imgOthers" src="css/images/imgCenter5W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+            </div>
 
             <ul id="ulThumbs">
                 <li><a href="#"><img src="css/images/imgThumb1W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>

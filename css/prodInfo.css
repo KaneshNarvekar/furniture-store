@@ -2,43 +2,15 @@
 #prodInfoBoxDiv {
     position: relative;
     width: 800px;
-    height: 820px;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: white;
-}
-
-#itemAddedDiv {
-    display: none;
-    position: relative;
-    width: 800px;
-    height: 50px;
+    height: 1000px;
     margin: 10px auto 0;
     background-color: white;
-}
-
-#itemAddedDiv img {
-    position: absolute;
-    top: 5px;
-    left: 65px;
-    border: 0;
-}
-
-#itemAddedDiv h3 {
-    position: absolute;
-    top: 8px;
-    left: 100px;
-    margin: 0;
-    padding: 0;
-    font-family: verdana, arial;
-    color: #e14d0f;
 }
 
 .thickLine { 
     padding: 0; 
     margin: 0; 
-    border: solid 2px; 
+    border: solid 10px; 
     color: lightgrey;
 }
 
@@ -205,6 +177,23 @@
     height: 20px;
     bottom: 0;
     background-color: grey;
+}
+
+#addNotificaiton {
+    display: none;
+    width: 800px;
+    height: 50px;
+    border: solid 1px #e14d0f; 
+}
+
+#addNotificaiton img {
+    border: 0;
+}
+
+#addNotificaiton h3 {
+    font-family: verdana, arial;
+    text-align: center;
+    color: #e14d0f;
 }
 
 

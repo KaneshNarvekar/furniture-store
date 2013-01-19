@@ -75,12 +75,14 @@
                     unset($_SESSION["customer"]);
                     header("Location: index.php");
                 }
+                
                 if (!isset($_SESSION["customer"]))
                 {
                     header("Location: index.php");
                 }
                 else if (isset($_REQUEST["btnUpdate"]))           
                 {
+                    
                     $firstName = $_GET["txtFirstName"];
                     $lastName = $_GET["txtLastName"];
                     $postEmail = $_GET["txtEmail"];
@@ -148,12 +150,12 @@
                     else
                     {
                         /////////////////// QUERY EMAIL EXISTS ? ///////////////
-                        $query = "SELECT * FROM customers where email='$postEmail' AND email != '$email'";   
+                        $currentEmail = $_SESSION["customer"]["email"];
+                        
+                        $query = "SELECT * FROM customers where email = '$postEmail' and email != '$currentEmail'";   
                         $resultSet = mysql_query($query);
                         if (!$resultSet) die("<ERROR: Cannot execute $query>");
                         $fetchedRow = mysql_fetch_assoc($resultSet);
-                        /////////////////// END OF UERY EMAIL EXISTS ///////////
-
                         if ($fetchedRow != null)
                         {
                             $errorMessage = "ERROR: Email you want to change is already registered with another account.";
@@ -161,16 +163,16 @@
                         else
                         {
                             $salt= "pg!@*";
-                            $hashedPwd = "$salt$pwd";
+                            $hashedPwd = md5($salt.$pwd);
                             $createQuery = "UPDATE customers 
                                              SET firstName = '$firstName', 
-                                                 lastName = '$lastName', 
+                                                 lastName = '$lastName',
                                                  email = '$postEmail', 
                                                  password = '$hashedPwd', 
                                                  address = '$address', 
                                                  postCode = '$postCode', 
                                                  cardNo = '$cardNo'
-                                                 where email = '$email'";
+                                                 where email = '$currentEmail'";
                             $createResult = mysql_query($createQuery);
                             if (!$createResult) die("<ERROR: Cannot execute $createQuery>");
                             $tempName = $firstName." ".$lastName;
@@ -186,28 +188,25 @@
                         }
                     }
                 }
-                else // IF UPDATE BUTTON NOT CLICKED
+                if (isset($_REQUEST["congrat"]))
                 {
-                    if (isset($_REQUEST["congrat"]))
-                    {
-                        echo "  <script> 
-                                        $(function() 
-                                            {
-                                                $('#frmHasNot').fadeOut('slow');
-                                                $('#h3Id').replaceWith('<h3>Congratulation</h3>');
-                                                $('#paraId').replaceWith('<p>Your account has been updated.</p>');
-                                            })
-                                </script>
-                                ";
-                    }
-                    $firstName = $_SESSION["customer"]["firstName"];
-                    $lastName = $_SESSION["customer"]["lastName"];
-                    $email = $_SESSION["customer"]["email"];
-                    $pwd = $_SESSION["customer"]["password"];
-                    $address = $_SESSION["customer"]["address"];
-                    $postCode = $_SESSION["customer"]["postCode"];
-                    $cardNo = $_SESSION["customer"]["cardNo"];
+                    echo "  <script> 
+                                    $(function() 
+                                        {
+                                            $('#frmHasNot').fadeOut('slow');
+                                            $('#h3Id').replaceWith('<h3>Congratulation</h3>');
+                                            $('#paraId').replaceWith('<p>Your account has been updated.</p>');
+                                        })
+                            </script>
+                            ";
                 }
+                $firstName = $_SESSION["customer"]["firstName"];
+                $lastName = $_SESSION["customer"]["lastName"];
+                $email = $_SESSION["customer"]["email"];
+                $pwd = $_SESSION["customer"]["password"];
+                $address = $_SESSION["customer"]["address"];
+                $postCode = $_SESSION["customer"]["postCode"];
+                $cardNo = $_SESSION["customer"]["cardNo"];
             ?>
             <div id="accountBoxDiv">
                 <div id="accountThickLine"></div> 

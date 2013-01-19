@@ -17,7 +17,7 @@
 <!--///////////////////////////////END OF STYLE SHEET ///////////////////////-->
         <script src="javascript/jquery-1.8.3.min.js" type="text/javascript"></script>
         <script src="javascript/validation.js" type="text/javascript"></script>
-        <script src="javascript/snow.js" type="text/javascript"></script>
+        <script src="javascript/flower.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="thankContainer">
@@ -59,9 +59,9 @@
                 <div id="navigationDiv">
                     <ul>
                         <li>                      <a class="logo" href="index.php"></a>               </li>
+                        <li>                      <a class="button" href="beds.php">BEDS</a>          </li>
                         <li>                      <a class="button" href="chairs.php">CHAIRS</a>      </li>
                         <li>                      <a class="button" href="chests.php">CHESTS</a>      </li>
-                        <li>                      <a class="button" href="beds.php">BEDS</a>          </li>
                         <li class="txtNav">       <input type="text" name="txtSearch"/>               </li>
                         <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>    </li>
                     </ul>

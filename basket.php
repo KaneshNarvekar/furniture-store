@@ -64,9 +64,9 @@
                 <div id="navigationDiv">
                     <ul>
                         <li>                      <a class="logo" href="index.php"></a>               </li>
+                        <li>                      <a class="button" href="beds.php">BEDS</a>          </li>
                         <li>                      <a class="button" href="chairs.php">CHAIRS</a>      </li>
                         <li>                      <a class="button" href="chests.php">CHESTS</a>      </li>
-                        <li>                      <a class="button" href="beds.php">BEDS</a>          </li>
                         <li class="txtNav">       <input type="text" name="txtSearch"/>               </li>
                         <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>    </li>
                     </ul>

@@ -2,16 +2,14 @@
     session_start();
     if (isset($_COOKIE["basket"]))
     {
-        $i = 0;
         foreach ($_COOKIE["basket"] as $name => $value)
         {
-            if ($i == 0){ $ids = explode(":", $value);}
-            if ($i == 1){ $names = explode(":", $value);}
-            if ($i == 2){$prices = explode(":", $value);}
-            if ($i == 3){$qtys = explode(":", $value);}
-            if ($i == 4){$imageNames = explode(":", $value);}
-            if ($i == 5){$types = explode(":", $value);}
-            $i = $i + 1;
+            if ($name == "id"){ $ids = explode(":", $value);}
+            if ($name == "name"){ $names = explode(":", $value);}
+            if ($name == "price"){ $prices = explode(":", $value);}
+            if ($name == "qty"){ $qtys = explode(":", $value);}
+            if ($name == "imageName"){ $imageNames = explode(":", $value);}
+            if ($name == "types"){ $types = explode(":", $value);}
         }
         $sizeIds = sizeof($ids);
         for ($i = 0; $i <  $sizeIds; $i++)
@@ -106,9 +104,9 @@
                 <div id="navigationDiv">
                     <ul>
                         <li>                      <a class="logo" href="index.php"></a>               </li>
+                        <li>                      <a class="button" href="beds.php">BEDS</a>          </li>
                         <li>                      <a class="button" href="chairs.php">CHAIRS</a>      </li>
                         <li>                      <a class="button" href="chests.php">CHESTS</a>      </li>
-                        <li>                      <a class="button" href="beds.php">BEDS</a>          </li>
                         <li class="txtNav">       <input type="text" name="txtSearch"/>               </li>
                         <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>    </li>
                     </ul>

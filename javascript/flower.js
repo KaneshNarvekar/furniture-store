@@ -5,7 +5,7 @@
 ******************************************/
   
   //Configure below to change URL path to the snow image
-  var snowsrc="css/images/snow4.png"
+  var snowsrc="css/images/flower.png"
   // Configure below to change number of snow to render
   var no = 10;
   // Configure whether snow should disappear after x seconds (0=never):

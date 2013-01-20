@@ -179,7 +179,6 @@
                             <div id='imgDivBg'>
                                 <div id='imgDiv'>
                                     <h2>$name</h2>
-                                    <div id='stars'> <div class='srtgs' id='rt_$id'></div> </div>
                                     <div id='prodSlides'>";
                     ///////////// SLIDE IMAGES DISPLAYED HERE ///////////////
                     for ($i = 0; $i < $bigImageArraySize; $i++)

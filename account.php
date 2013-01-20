@@ -119,12 +119,16 @@
                             $errorMessage = "ERROR: Email length must be less than 50 characters";
                         }
                     }
-                    else if (!preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $pwd) || strlen($pwd) > 30)
+                    else if (!preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $pwd) || strlen($pwd) > 30 || preg_match('/\s+/', $pwd))
                     {
                         $errorMessage = "ERROR: Password is invalid! password length must be 8, it must contain at least one upper case letter and one number";
                         if (strlen($pwd) > 30)
                         {
                             $errorMessage = "ERROR: Password length must be less than 30 characters";
+                        }
+                        if(preg_match('/\s+/', $pwd))
+                        {
+                            $errorMessage = "ERROR: Password must not contain spaces";
                         }
                     }
                     else if (!preg_match("/^([0-9]+)([A-Z',])+$/i", $rdyAddress) || strlen($rdyAddress) > 50)

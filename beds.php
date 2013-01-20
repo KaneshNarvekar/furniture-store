@@ -102,7 +102,7 @@
                             $imageName = $fetchedRow[2];
                             $price = $fetchedRow[5];
                             $displayImage = "<img src=\"css/images/beds/$imageName\" width='158' height='158' alt=\"tableImage\"/>";
-                            echo " <td><a href=\"prodInfo.php?prodId=$id\"> $displayImage <p>$name <span class=\"price\">£$price</span></p></a></td> ";
+                            echo " <td><a href=\"prodInfo.php?prodId=$id\"> $displayImage <p>$name <span class=\"price\">&pound;$price</span></p></a></td> ";
                             $fetchedRow = mysql_fetch_row($resultSet);
                         }
                     }

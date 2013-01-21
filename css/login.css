@@ -26,6 +26,7 @@
     width: 800px;
     height: 20px;
     bottom: 0;
+    left: 0;
     background-color: grey;
 }
 
@@ -53,7 +54,6 @@
 #hasAccountDiv form {
     width: 142px;
     height: 150px;
-    margin-left: 50px;
 }
 
 #hasAccountDiv input[type="text"], #hasPassword {
@@ -61,6 +61,7 @@
     height: 20px;
     border: solid 1px;
     margin-bottom: 10px;
+    margin-left: 50px;
 }
 
 #frmHas input[type="text"]:focus, #hasPassword:focus {
@@ -73,6 +74,7 @@
     border: 0;
     background-color: black;
     color: white;
+    margin-left: 50px;
 }
 
 #frmHas input[type="submit"]:hover { background-color: #e14d0f; color: black;}
@@ -82,7 +84,7 @@
     float: left;
     font-family: verdana, arial, sans-serif;
     font-size: 12px;
-    
+    margin-left: 50px;
 }
 
 /*/////// HAS NOT ACCOUNT ///////*/
@@ -103,19 +105,27 @@
     font-size: 12px;
 }
 
-#hasNotAccountDiv form {
+#frmHasNot {
     width: 300px;
     height: 500px;
     margin-top: 10px;
-    margin-left: 50px;
 }
 
-#frmHasNot input[type="text"], input[type="password"] {
+#frmHasNot input[type="text"] {
     width: 200px;
     height: 20px;
     margin-right: 80px;
     border: solid 1px;
     margin-bottom: 10px;
+    margin-left: 50px;
+}
+#frmHasNot input[type="password"] {
+    width: 200px;
+    height: 20px;
+    margin-right: 80px;
+    border: solid 1px;
+    margin-bottom: 10px;
+    margin-left: 50px;
 }
 
 #frmHasNot input[type="text"]:focus, input[type="password"]:hover {
@@ -128,6 +138,7 @@
     border: 0;
     background-color: black;
     color: white;
+    margin-left: 50px;
 }
 
 #hasNotAccountDiv input[type="submit"]:hover { background-color: #e14d0f; color: black;}

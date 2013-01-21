@@ -103,8 +103,7 @@
                     }
                     else
                     {
-                        $salt= "pg!@*";
-                        $hashedPwd = md5($salt.$hasPwd);
+                        $hashedPwd = md5($hasPwd);
                         $query = "SELECT * FROM customers where email='$hasEmail' and password = '$hashedPwd'";   
                         $resultSet = mysql_query($query);
                         if (!$resultSet) die("<ERROR: Cannot execute $query>");
@@ -123,7 +122,7 @@
                         }
                         else
                         {
-                            $hasErrorMessage = "ERROR: Password incorrect";
+                            $hasErrorMessage = "ERROR: Password is incorrect";;                           
                         }
                     }
                 }
@@ -217,8 +216,7 @@
                         }
                         else
                         {
-                            $salt= "pg!@*";
-                            $hashedPassword = md5($salt.$pwd);
+                            $hashedPassword = md5($pwd);
                             $createQuery = "INSERT INTO customers VALUES ('$firstName', '$lastName', '$email', '$hashedPassword', '$address', '$postCode', '$cardNo')";
                             $createResult = mysql_query($createQuery);
                             if (!$createResult) die("<ERROR: Cannot execute $createQuery>");
@@ -287,7 +285,7 @@
                         }
                     ?>
 <!--///////////////////// END OF DISPLAYING ERROR MESSAGE ///////////////////-->  
-                    <form id="frmHasNot" method="post">
+                        <form id="frmHasNot" method="post">
                         <span class="spanInputs">First Name:</span>
                         <input type="text" name="txtFirstName" value="<?php echo $firstName ?>"/>
                         
@@ -314,6 +312,7 @@
                         
                         <input type="submit" name="btnRegister" value="Register"/>
                     </form>
+                
                 </div>
 
                 <div id="loginThickLine">

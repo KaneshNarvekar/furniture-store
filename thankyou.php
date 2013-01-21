@@ -5,6 +5,7 @@
         $basket = array();
         $_SESSION["basket"] = $basket;
     }
+    unset($_SESSION["basket"]);
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,7 +51,7 @@
                     <a id="login" href="login.php">login &#124;</a>
                     <a id="cart" href="basket.php">
                         <img src="css/images/imgCartW26xH26.png" width="26" height="26" alt="Cart Image"/>
-                        my cart&nbsp;<?php $size = sizeof($_SESSION["basket"]); echo "$size"; ?>&nbsp;items
+                        my cart&nbsp;<?php $size = 0; echo "$size"; ?>&nbsp;items
                     </a>
                 </p>
             </div>

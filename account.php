@@ -70,7 +70,7 @@
                 include_once ("connect.php");
                 $errorMessage = "";
                 
-                if ((isset($_REQUEST["btnLogout"])))
+                if ((isset($_POST["btnLogout"])))
                 {
                     unset($_SESSION["customer"]);
                     header("Location: index.php");
@@ -80,16 +80,16 @@
                 {
                     header("Location: index.php");
                 }
-                else if (isset($_REQUEST["btnUpdate"]))           
+                else if (isset($_POST["btnUpdate"]))           
                 {
                     
-                    $firstName = $_GET["txtFirstName"];
-                    $lastName = $_GET["txtLastName"];
-                    $postEmail = $_GET["txtEmail"];
-                    $pwd = $_GET["txtPwd"];
-                    $address = $_GET["txtAddress"];
-                    $postCode = $_GET["txtPostCode"];
-                    $cardNo = $_GET["txtCardNo"];
+                    $firstName = $_POST["txtFirstName"];
+                    $lastName = $_POST["txtLastName"];
+                    $postEmail = $_POST["txtEmail"];
+                    $pwd = $_POST["txtPwd"];
+                    $address = $_POST["txtAddress"];
+                    $postCode = $_POST["txtPostCode"];
+                    $cardNo = $_POST["txtCardNo"];
 
                     $rdyAddress = preg_replace('/\s+/', '', $address);
 
@@ -166,8 +166,8 @@
                         }
                         else
                         {
-                            $salt= "pg!@*";
-                            $hashedPwd = md5($salt.$pwd);
+                            $salt= "*@!";
+                            $hashedPwd = md5($salt.$pwd.$salt);
                             $createQuery = "UPDATE customers 
                                              SET firstName = '$firstName', 
                                                  lastName = '$lastName',
@@ -232,29 +232,29 @@
                            </script>";
                         }
                     ?>
-                    <form id="frmAccount">
-                        <span class="spanInputs">First Name:</span>
+                    <form id="frmAccount" method="post">
+                        <span class="spanInputs2">First Name:</span>
                         <input type="text" name="txtFirstName" value="<?php echo $firstName ?>"/>
 
-                        <span class="spanInputs">Last Name:</span>
+                        <span class="spanInputs2">Last Name:</span>
                         <input type="text" name="txtLastName" value="<?php echo $lastName ?>"/>
 
-                        <span class="spanInputs">Email Address:</span>
+                        <span class="spanInputs2">Email Address:</span>
                         <input type="text" name="txtEmail" value="<?php echo $email?>"/>
 
-                        <span class="spanInputs">Password:</span>
+                        <span class="spanInputs2">Password:</span>
                         <input type="text" name="txtPwd" value="<?php echo $pwd ?>"/>
 
-                        <span class="spanInputs">Address:</span>
+                        <span class="spanInputs2">Address:</span>
                         <input type="text" name="txtAddress" value="<?php echo $address ?>"/>
 
-                        <span class="spanInputs">Post Code:</span>
+                        <span class="spanInputs2">Post Code:</span>
                         <input type="text" name="txtPostCode" value="<?php echo $postCode ?>"/>
 
-                        <span class="spanInputs">Card No:</span>
+                        <span class="spanInputs2">Card No:</span>
                         <input type="text" name="txtCardNo" value="<?php echo $cardNo ?>"/>
 
-                        <input type="submit" name="btnUpdate" value="Update"/>
+                        <input id="btnUpdate" type="submit" name="btnUpdate" value="Update"/>
 
                         <input id="btnLogout" type="submit" name="btnLogout" value="Logout"/>
                     </form>

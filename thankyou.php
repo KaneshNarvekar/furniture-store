@@ -6,6 +6,14 @@
         $_SESSION["basket"] = $basket;
     }
     unset($_SESSION["basket"]);
+    
+    setcookie("basket[id]", "", time() - 3600);
+    setcookie("basket[name]", "", time() - 3600);
+    setcookie("basket[price]", "", time() - 3600);
+    setcookie("basket[qty]", "", time() - 3600);
+    setcookie("basket[imageName]", "", time() - 3600);
+    setcookie("basket[types]", "", time() - 3600);
+    
 ?>
 <!DOCTYPE html>
 <html>

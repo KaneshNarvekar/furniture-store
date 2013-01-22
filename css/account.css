@@ -20,6 +20,7 @@
     width: 800px;
     height: 10px;
     top: 0;
+    left: 0;
     background-color: grey;
 }
 
@@ -38,30 +39,42 @@
 }
 /*///// FORM STYLE /////*/
 #frmAccount {
+    position: relative;
     width: 400px;
     height: 500px;
     margin-top: 20px;
-    margin-left: 20px;
 }
 
 #frmAccount input[type="text"] {
     width: 140px;
     height: 20px;
+    float: left;
     border: solid 1px;
     margin-bottom: 10px;
+    margin-left: 20px;
 }
 
 #frmAccount input[type="text"]:focus {
     border-color: #e14d0f;
 }
 
-#frmAccount input[type='submit'] {
+#btnUpdate {
     width: 70px;
     height: 30px;
     border: 0;
+    float: left;
     margin-top: 10px;
     background-color: black;
     color: white;
+    margin-left: 20px;
+}
+
+.spanInputs2 {
+    width: 200px;
+    float: left;
+    font-family: verdana, arial, sans-serif;
+    font-size: 12px;
+    margin-left: 20px;
 }
 
 #frmAccount input[type='submit']:hover 
@@ -92,5 +105,12 @@
 }
 
 #btnLogout {
-    margin-left: 198px;
+    width: 70px;
+    height: 30px;
+    border: 0;
+    float: left;
+    margin-top: 10px;
+    background-color: black;
+    color: white;
+    margin-left: 196px;
 }

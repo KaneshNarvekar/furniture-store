@@ -103,7 +103,8 @@
                     }
                     else
                     {
-                        $hashedPwd = md5($hasPwd);
+                        $salt = "*@!";
+                        $hashedPwd = md5($salt.$hasPwd.$salt);
                         $query = "SELECT * FROM customers where email='$hasEmail' and password = '$hashedPwd'";   
                         $resultSet = mysql_query($query);
                         if (!$resultSet) die("<ERROR: Cannot execute $query>");
@@ -216,7 +217,8 @@
                         }
                         else
                         {
-                            $hashedPassword = md5($pwd);
+                            $salt = "*@!";
+                            $hashedPassword = md5($salt.$pwd.$salt);
                             $createQuery = "INSERT INTO customers VALUES ('$firstName', '$lastName', '$email', '$hashedPassword', '$address', '$postCode', '$cardNo')";
                             $createResult = mysql_query($createQuery);
                             if (!$createResult) die("<ERROR: Cannot execute $createQuery>");

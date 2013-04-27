@@ -9,12 +9,12 @@
             if ($name == "price"){ $prices = explode(":", $value);}
             if ($name == "qty"){ $qtys = explode(":", $value);}
             if ($name == "imageName"){ $imageNames = explode(":", $value);}
-            if ($name == "types"){ $types = explode(":", $value);}
+            if ($name == "type"){ $type = explode(":", $value);}
         }
         $sizeIds = sizeof($ids);
         for ($i = 0; $i <  $sizeIds; $i++)
         {
-            $basket[] = array("id" => $ids[$i], "name" => $names[$i], "price" => $prices[$i], "qty" => $qtys[$i], "imageName" => $imageNames[$i], "types" => $types[$i]);
+            $basket[] = array("id" => $ids[$i], "name" => $names[$i], "price" => $prices[$i], "qty" => $qtys[$i], "imageName" => $imageNames[$i], "type" => $type[$i]);
         }
         $_SESSION["basket"] = $basket;
         
@@ -103,12 +103,12 @@
             <form action="search.php" method="post">
                 <div id="navigationDiv">
                     <ul>
-                        <li>                      <a class="logo" href="index.php"></a>               </li>
-                        <li>                      <a class="button" href="beds.php">BEDS</a>          </li>
-                        <li>                      <a class="button" href="chairs.php">CHAIRS</a>      </li>
-                        <li>                      <a class="button" href="chests.php">CHESTS</a>      </li>
-                        <li class="txtNav">       <input type="text" name="txtSearch"/>               </li>
-                        <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>    </li>
+                        <li>                      <a class="logo" href="index.php"></a>                                  </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=bed">BEDS</a>            </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=chair">CHAIRS</a>        </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=chest">CHESTS</a>        </li>
+                        <li class="txtNav">       <input type="text" name="txtSearch"/>                                  </li>
+                        <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>                       </li>
                     </ul>
                 </div>
             </form>
@@ -146,15 +146,15 @@
 
                 <div id="featuredSlides">
                     <div class="slide">
-                        <a href="prodInfo.php?prodId=bed04&amp;type=bed"> <img src="css/images/beds/bed4.jpg" width="158" height="158" alt="centerImage"/> </a>
-                        <a href="prodInfo.php?prodId=bed08&amp;type=bed"> <img src="css/images/beds/bed8.jpg" width="158" height="158" alt="centerImage"/> </a>
-                        <a href="prodInfo.php?prodId=bed03&amp;type=bed"> <img src="css/images/beds/bed3.jpg" width="158" height="158" alt="centerImage"/> </a>
+                        <a href="prodInfo.php?prodId=bed04&amp;type=bed"> <img src="css/images/bed/bed4.jpg" width="158" height="158" alt="centerImage"/> </a>
+                        <a href="prodInfo.php?prodId=bed08&amp;type=bed"> <img src="css/images/bed/bed8.jpg" width="158" height="158" alt="centerImage"/> </a>
+                        <a href="prodInfo.php?prodId=bed03&amp;type=bed"> <img src="css/images/bed/bed3.jpg" width="158" height="158" alt="centerImage"/> </a>
                     </div>
                     
                     <div class="slide">
-                        <a href="prodInfo.php?prodId=chair01&amp;type=chair">  <img src="css/images/chairs/chair1.jpg" width="158" height="158" alt="centerImage"/> </a>
-                        <a href="prodInfo.php?prodId=chair02&amp;type=chair">  <img src="css/images/chairs/chair2.jpg" width="158" height="158" alt="centerImage"/> </a>
-                        <a href="prodInfo.php?prodId=chair03&amp;type=chair">  <img src="css/images/chairs/chair3.jpg" width="158" height="158" alt="centerImage"/> </a>
+                        <a href="prodInfo.php?prodId=chair01&amp;type=chair">  <img src="css/images/chair/chair1.jpg" width="158" height="158" alt="centerImage"/> </a>
+                        <a href="prodInfo.php?prodId=chair02&amp;type=chair">  <img src="css/images/chair/chair2.jpg" width="158" height="158" alt="centerImage"/> </a>
+                        <a href="prodInfo.php?prodId=chair03&amp;type=chair">  <img src="css/images/chair/chair3.jpg" width="158" height="158" alt="centerImage"/> </a>
                     </div>
                 </div> 
             </div>

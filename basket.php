@@ -60,15 +60,15 @@
                 </p>
             </div>
 <!--///////////////////////////////NAVIGATION PANEL//////////////////////////-->
-            <form action="search.php" method="post">
+           <form action="search.php" method="post">
                 <div id="navigationDiv">
                     <ul>
-                        <li>                      <a class="logo" href="index.php"></a>               </li>
-                        <li>                      <a class="button" href="beds.php">BEDS</a>          </li>
-                        <li>                      <a class="button" href="chairs.php">CHAIRS</a>      </li>
-                        <li>                      <a class="button" href="chests.php">CHESTS</a>      </li>
-                        <li class="txtNav">       <input type="text" name="txtSearch"/>               </li>
-                        <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>    </li>
+                        <li>                      <a class="logo" href="index.php"></a>                                  </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=bed">BEDS</a>            </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=chair">CHAIRS</a>        </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=chest">CHESTS</a>        </li>
+                        <li class="txtNav">       <input type="text" name="txtSearch"/>                                  </li>
+                        <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>                       </li>
                     </ul>
                 </div>
             </form>
@@ -84,7 +84,7 @@
                 </tr>
                 <tr><td class='tdFirstThinLine' colspan='5'> </td></tr>
                 <?php
-                 include_once 'phpValidation.php';
+                 include_once 'php/phpValidation.php';
                 $update = false;
                 $basket = $_SESSION["basket"];    
 
@@ -146,14 +146,14 @@
                         }
                         $basket[$key]["qty"] = $qtyToUpdate;
                     }
-                    $types = $item["types"];
+                    $type = $item["type"];
                     $imgName = $item["imageName"]; 
                     $name = $item["name"];
                     $price = $item["price"];
                     $qty = $basket[$key]["qty"];
                     $cost = $qty * $price;
                     echo "<tr id='tr$id'>
-                            <td class='tdProdImg'> <img src='css/images/$types/$imgName' width='50' height='52' alt='image $imgName'/> </td>
+                            <td class='tdProdImg'> <img src='css/images/$type/$imgName' width='50' height='52' alt='image $imgName'/> </td>
                             <td class='tdName'> <p>$name</p> </td>
                             <td class='tdPrice'> &pound$price </td>
                             <td class='tdQty'>   <form>  <input type='hidden' name='hidIdUpdate' value='$id'/> <input type='text' name='qtyUpdate' value='$qty'/> <input type='submit' value='update'/> </form> </td>
@@ -182,7 +182,7 @@
                     $setPrice = "";
                     $setQty = "";
                     $setImageName = "";
-                    $setTypes = "";
+                    $setType = "";
                     for ($i = 0; $i < $basketSize; $i++)
                     {
                         $setId        .= ":".$_SESSION["basket"][$i]["id"]; 
@@ -190,21 +190,21 @@
                         $setPrice     .= ":".$_SESSION["basket"][$i]["price"]; 
                         $setQty       .= ":".$_SESSION["basket"][$i]["qty"];
                         $setImageName .= ":".$_SESSION["basket"][$i]["imageName"]; 
-                        $setTypes     .= ":".$_SESSION["basket"][$i]["types"];
+                        $setType      .= ":".$_SESSION["basket"][$i]["type"];
                     }
                     $subId = substr($setId, 1);
                     $subName = substr($setName, 1);
                     $subPrice = substr($setPrice, 1);
                     $subQty = substr($setQty, 1);
                     $subImageName = substr($setImageName, 1);
-                    $subTypes = substr($setTypes, 1);
+                    $subType = substr($setType, 1);
 
                     setcookie("basket[id]", $subId, time()+ 3600);
                     setcookie("basket[name]", $subName, time()+ 3600);
                     setcookie("basket[price]", $subPrice, time()+ 3600);
                     setcookie("basket[qty]", $subQty, time()+ 3600);
                     setcookie("basket[imageName]", $subImageName, time()+ 3600);
-                    setcookie("basket[types]", $subTypes, time()+ 3600);
+                    setcookie("basket[type]", $subType, time()+ 3600);
                 }
                 /////////////// END OF DISPLAYING BASKET DATA //////////
 

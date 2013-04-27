@@ -12,7 +12,7 @@
     setcookie("basket[price]", "", time() - 3600);
     setcookie("basket[qty]", "", time() - 3600);
     setcookie("basket[imageName]", "", time() - 3600);
-    setcookie("basket[types]", "", time() - 3600);
+    setcookie("basket[type]", "", time() - 3600);
     
 ?>
 <!DOCTYPE html>
@@ -67,21 +67,19 @@
             <form action="search.php" method="post">
                 <div id="navigationDiv">
                     <ul>
-                        <li>                      <a class="logo" href="index.php"></a>               </li>
-                        <li>                      <a class="button" href="beds.php">BEDS</a>          </li>
-                        <li>                      <a class="button" href="chairs.php">CHAIRS</a>      </li>
-                        <li>                      <a class="button" href="chests.php">CHESTS</a>      </li>
-                        <li class="txtNav">       <input type="text" name="txtSearch"/>               </li>
-                        <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>    </li>
+                        <li>                      <a class="logo" href="index.php"></a>                                  </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=bed">BEDS</a>            </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=chair">CHAIRS</a>        </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=chest">CHESTS</a>        </li>
+                        <li class="txtNav">       <input type="text" name="txtSearch"/>                                  </li>
+                        <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>                       </li>
                     </ul>
                 </div>
             </form>
-                <div id="thankyouDiv">
-                    <h2> Thank you your order has been placed!!!</h2>
-                </div>
-                
-<!--////////////////////////////// END OF LOGIN BOX DIV /////////////////////-->
-            
+<!--///////////////////////////////END OF NAVIGATION/////////////////////////-->
+            <div id="thankyouDiv">
+                <h2> Thank you your order has been placed!!!</h2>
+            </div>
             <div id="footerDiv">
                 <p>
                     <a href="#">Page Last Updated: December 31, 2012</a>

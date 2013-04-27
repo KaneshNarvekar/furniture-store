@@ -116,12 +116,12 @@
             <form action="search.php" method="post">
                 <div id="navigationDiv">
                     <ul>
-                        <li>                      <a class="logo" href="index.php"></a>               </li>
-                        <li>                      <a class="button" href="beds.php">BEDS</a>          </li>
-                        <li>                      <a class="button" href="chairs.php">CHAIRS</a>      </li>
-                        <li>                      <a class="button" href="chests.php">CHESTS</a>      </li>
-                        <li class="txtNav">       <input type="text" name="txtSearch"/>               </li>
-                        <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>    </li>
+                        <li>                      <a class="logo" href="index.php"></a>                                  </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=bed">BEDS</a>            </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=chair">CHAIRS</a>        </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=chest">CHESTS</a>        </li>
+                        <li class="txtNav">       <input type="text" name="txtSearch"/>                                  </li>
+                        <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>                       </li>
                     </ul>
                 </div>
             </form>
@@ -133,7 +133,7 @@
                         This item is added to your basket!</h3>
                 </div>
                 <?php
-                include_once ("connect.php");
+                include_once ("php/connect.php");
                 $prodId = null;
                 if (isset($_GET["prodId"]))     // GET PRODUCT ID
                 {
@@ -170,7 +170,6 @@
                     $imgName = $fetchedRow["prodImage"];
                     $prodDesc = $fetchedRow["prodDesc"];
                     $type = $fetchedRow["type"];
-                    $types = $type."s";
                     $price = $fetchedRow["price"];
                     $BigImgNames = $fetchedRow["bigImageNames"];
                     $bigImgNamesArray = explode(":", $BigImgNames);
@@ -189,7 +188,7 @@
                         else {
                             $className = "otherProdSlides"; // GIVE OTHERS CLASS
                         }
-                        echo "<img class='$className' src='css/images/$types/$bigImgNamesArray[$i]' alt='Big $type image'/>";
+                        echo "<img class='$className' src='css/images/$type/$bigImgNamesArray[$i]' alt='Big $type image'/>";
                     }
                     //////////// END OF SLIDE IMAGES ///////////////
                     
@@ -216,7 +215,7 @@
                     {
                         $basket = $_SESSION["basket"];
                         $qty = $_POST["txtQty"];
-                        $item = array("id" => $id, "name" => $name, "price" => $price, "qty" => $qty, "imageName" => $imgName, "types" => $types);
+                        $item = array("id" => $id, "name" => $name, "price" => $price, "qty" => $qty, "imageName" => $imgName, "type" => $type);
 
                         $itemFound = false;
                         $size = sizeof($basket);
@@ -244,7 +243,7 @@
                         $setPrice = "";
                         $setQty = "";
                         $setImageName = "";
-                        $setTypes = "";
+                        $setType = "";
 
                         $sessionSize = sizeof($_SESSION["basket"]);
 
@@ -255,21 +254,21 @@
                             $setPrice     .= ":".$_SESSION["basket"][$i]["price"]; 
                             $setQty       .= ":".$_SESSION["basket"][$i]["qty"];
                             $setImageName .= ":".$_SESSION["basket"][$i]["imageName"]; 
-                            $setTypes     .= ":".$_SESSION["basket"][$i]["types"];
+                            $setType      .= ":".$_SESSION["basket"][$i]["type"];
                         }
                         $subId = substr($setId, 1);
                         $subName = substr($setName, 1);
                         $subPrice = substr($setPrice, 1);
                         $subQty = substr($setQty, 1);
                         $subImageName = substr($setImageName, 1);
-                        $subTypes = substr($setTypes, 1);
+                        $subType = substr($setType, 1);
 
                         setcookie("basket[id]", $subId, time()+ 3600);
                         setcookie("basket[name]", $subName, time()+ 3600);
                         setcookie("basket[price]", $subPrice, time()+ 3600);
                         setcookie("basket[qty]", $subQty, time()+ 3600);
                         setcookie("basket[imageName]", $subImageName, time()+ 3600);
-                        setcookie("basket[types]", $subTypes, time()+ 3600);
+                        setcookie("basket[type]", $subType, time()+ 3600);
                         
                         header("Location: prodInfo.php?prodId=" . $id . "&itemAdded=added"); //DISABLE REFRESH
                     }

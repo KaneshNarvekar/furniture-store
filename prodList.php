@@ -9,7 +9,35 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Chests &#124; DAVA</title>
+        <?php
+        $prodType = "";
+        $title = "";
+        $image1 = "";
+        $image2 = "";
+        if (isset($_GET["prodType"]))     // Get product type
+        {
+            $prodType = $_GET["prodType"];
+        }
+        if ($prodType == "bed")
+        {
+            $title = "Beds";
+            $image1 = "<a href='prodInfo.php?prodId=bed12&amp;type=bed'><img src='css/images/bed/imgBed1W300xH439.jpg' width='300' height='439' alt='Bed images'/></a>";
+            $image2 = "<img src='css/images/bed/imgBed2W300xH439.jpg' width='300' height='439' alt='Bed images'/>";
+        }
+        else if ($prodType == "chair")
+        {
+            $title = "Chairs";
+            $image1 = "<a href='prodInfo.php?prodId=chair13&amp;type=chair'> <img src='css/images/chair/imgChair1W300xH439.jpg' width='300' height='439' alt='Chair images'/> </a>";
+            $image2 = "<a href='prodInfo.php?prodId=chair07&amp;type=chair'><img src='css/images/chair/imgChair2W300xH439.jpg' width='300' height='439' alt='Chair images'/></a>";
+        }
+        else if ($prodType == "chest")
+        {
+            $title = "Chests";
+            $image1 = "<img src='css/images/chest/imgChest1W300xH439.jpg' width='300' height='439' alt='Chest images'/>";
+            $image2 = "<img src='css/images/chest/imgChest2W300xH439.jpg' width='300' height='439' alt='Chest images'/>";
+        }
+        ?>
+        <title><?php echo $title; ?> &#124; DAVA</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
         <link href="css/pagination.css" rel="stylesheet" type="text/css"/>
@@ -18,14 +46,13 @@
         <link href="css/home.css" rel="stylesheet" type="text/css"/>
         <link href="css/prodList.css" rel="stylesheet" type="text/css"/>
 <!--///////////////////////////////END OF STYLE SHEET ///////////////////////-->
-
         <script src="javascript/jquery-1.8.3.min.js" type="text/javascript"></script>
     </head>
+    
     <body>
         <div id="container">
             <div id="headerDiv">
 <!--/////////////////////////// WELCOME USER ////////////////////////////////-->  
-                
                 <?php
                 if (isset($_POST["btnLogout"]))
                 {
@@ -56,36 +83,41 @@
             <form action="search.php" method="post">
                 <div id="navigationDiv">
                     <ul>
-                        <li>                      <a class="logo" href="index.php"></a>               </li>
-                        <li>                      <a class="button" href="beds.php">BEDS</a>          </li>
-                        <li>                      <a class="button" href="chairs.php">CHAIRS</a>      </li>
-                        <li>                      <a class="button" href="chests.php">CHESTS</a>      </li>
-                        <li class="txtNav">       <input type="text" name="txtSearch"/>               </li>
-                        <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>    </li>
+                        <li>                      <a class="logo" href="index.php"></a>                                  </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=bed">BEDS</a>            </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=chair">CHAIRS</a>        </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=chest">CHESTS</a>        </li>
+                        <li class="txtNav">       <input type="text" name="txtSearch"/>                                  </li>
+                        <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>                       </li>
                     </ul>
                 </div>
             </form>
 <!--///////////////////////////////END OF NAVIGATION ////////////////////////-->
- 
             <div id="prodListDiv">
-                <div id="greyBG"> <h6> Luxury Chests </h6> </div>
+                <div id="greyBG"> <h6> Luxury Beds </h6> </div>
                 <div class="prodImages">
-                    <img src="css/images/chests/imgChest1W300xH439.jpg" width="300" height="439" alt="Chest images"/>
+                    <?php echo $image1; ?>
                 </div>
                 <table id="productTable">
-                    <?php
-                    include_once ("connect.php");
-                    include_once ("function.php");
-
-                    $page = (int) (!isset($_GET["page"]) ? 1 : $_GET["page"]);
-                    $limit = 9;
-                    $startpoint = ($page * $limit) - $limit;
-                    $statement = "FROM products where type=\"chest\"";
-                    $query = "SELECT * FROM products where type = \"chest\" LIMIT {$startpoint} , {$limit}";
-                    $resultSet = mysql_query($query);
-                    if (!$resultSet) die("<ERROR: Cannot execute $query>");
-                    $fetchedRow = mysql_fetch_row($resultSet);
-
+                <?php
+                include_once ("php/connect.php");
+                include_once ("php/function.php");
+                
+                $page = (int) (!isset($_GET["page"]) ? 1 : $_GET["page"]);
+                $limit = 9;
+                $startpoint = ($page * $limit) - $limit;
+                $statement = "FROM products where type='$prodType'";
+                $query = "SELECT * FROM products where type = '$prodType' LIMIT {$startpoint} , {$limit}";
+                $resultSet = mysql_query($query);
+                if (!$resultSet) die("<ERROR: Cannot execute $query>");
+                $fetchedRow = mysql_fetch_row($resultSet);
+                
+                if ($fetchedRow == null) // IF NULL THEN DIRECT TO PRODINFO.PHP   
+                {
+                    header("Location: prodInfo.php");
+                }
+                else
+                {
                     for ($rowNumber = 0; $rowNumber < 3; $rowNumber++)
                     {
                         echo "<tr>";
@@ -101,20 +133,22 @@
                                 $name = $fetchedRow[1];
                                 $imageName = $fetchedRow[2];
                                 $price = $fetchedRow[5];
-                                $displayImage = "<img src=\"css/images/chests/$imageName\" width='158' height='158' alt=\"tableImage\"/>";
-                                echo " <td><a href=\"prodInfo.php?prodId=$id\"> $displayImage <p>$name <span class=\"price\">£$price</span></p></a></td> ";
+                                $displayImage = "<img src='css/images/$prodType/$imageName' width='158' height='158' alt='tableImage'/>";
+                                echo " <td><a href='prodInfo.php?prodId=$id'> $displayImage <p>$name <span class='price'>&pound;$price</span></p></a></td> ";
                                 $fetchedRow = mysql_fetch_row($resultSet);
                             }
                         }
                         echo "</tr>";
                     }
-                    ?>    
+                }
+                ?>    
                 </table>
                 <div class="prodImages">
-                    <img src="css/images/chests/imgChest2W300xH439.jpg" width="300" height="439" alt="Chest images"/>
+                    <?php echo $image2; ?>
                 </div>
+                
                 <div id="paginationBoxDiv">
-                    <div id="paginationDiv"><?php echo pagination($statement,$limit,$page); ?></div>
+                    <div id="paginationDiv"><?php echo pagination($statement,$limit,$page, "?prodType=$prodType&"); ?></div>
                 </div>
             </div>
 <!--///////////////////////////////END OF PRODUCT LIST //////////////////////-->
@@ -133,6 +167,6 @@
                 </p>
             </div>
         </div>
-<!--///////////////////////////////END OF CONTAINER //////////////////////-->
+<!--///////////////////////////////END OF CONTAINER /////////////////////////-->
     </body>
 </html>

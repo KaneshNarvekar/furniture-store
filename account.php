@@ -57,17 +57,19 @@
             <form action="search.php" method="post">
                 <div id="navigationDiv">
                     <ul>
-                        <li>                      <a class="logo" href="index.php"></a>               </li>
-                        <li>                      <a class="button" href="beds.php">BEDS</a>          </li>
-                        <li>                      <a class="button" href="chairs.php">CHAIRS</a>      </li>
-                        <li>                      <a class="button" href="chests.php">CHESTS</a>      </li>
-                        <li class="txtNav">       <input type="text" name="txtSearch"/>               </li>
-                        <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>    </li>
+                        <li>                      <a class="logo" href="index.php"></a>                                  </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=bed">BEDS</a>            </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=chair">CHAIRS</a>        </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=chest">CHESTS</a>        </li>
+                        <li class="txtNav">       <input type="text" name="txtSearch"/>                                  </li>
+                        <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>                       </li>
                     </ul>
                 </div>
             </form>
+<!--///////////////////////////////END OF NAVIGATION/////////////////////////-->
             <?php
-                include_once ("connect.php");
+                include_once ("php/connect.php");
+                include_once "php/phpValidation.php";
                 $errorMessage = "";
                 
                 if ((isset($_POST["btnLogout"])))
@@ -93,7 +95,7 @@
 
                     $rdyAddress = preg_replace('/\s+/', '', $address);
 
-                    include_once "phpValidation.php";
+                    
                     
                     if (!preg_match("/^[A-Z]+$/i", $firstName) || strlen($firstName) > 30)
                     {

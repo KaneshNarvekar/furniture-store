@@ -82,12 +82,12 @@
             <form action="search.php" method="post">
                 <div id="navigationDiv">
                     <ul>
-                        <li>                      <a class="logo" href="index.php"></a>               </li>
-                        <li>                      <a class="button" href="beds.php">BEDS</a>          </li>
-                        <li>                      <a class="button" href="chairs.php">CHAIRS</a>      </li>
-                        <li>                      <a class="button" href="chests.php">CHESTS</a>      </li>
-                        <li class="txtNav">       <input type="text" name="txtSearch"/>               </li>
-                        <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>    </li>
+                        <li>                      <a class="logo" href="index.php"></a>                                  </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=bed">BEDS</a>            </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=chair">CHAIRS</a>        </li>
+                        <li>                      <a class="button" href="prodList.php?prodType=chest">CHESTS</a>        </li>
+                        <li class="txtNav">       <input type="text" name="txtSearch"/>                                  </li>
+                        <li class="searchNav">    <input type="submit" name="btnSearch" value=""/>                       </li>
                     </ul>
                 </div>
             </form>
@@ -116,7 +116,7 @@
                             foreach ($basket as $key => $item)      
                             {
                                 $id = $item["id"];
-                                $types = $item["types"];
+                                $type = $item["type"];
                                 $imgName = $item["imageName"]; 
                                 $name = $item["name"];
                                 $price = $item["price"];
@@ -124,7 +124,7 @@
                                 $cost = $qty * $price;
                                 $total = $total + ($price * $qty);
                                 echo "<tr id='tr$id'>
-                                        <td class='tdProdImg'> <img src='css/images/$types/$imgName' width='50' height='52' alt='image $imgName'/> </td>
+                                        <td class='tdProdImg'> <img src='css/images/$type/$imgName' width='50' height='52' alt='image $imgName'/> </td>
                                         <td class='tdName'> <p>$name</p> </td>
                                         <td class='tdPrice'> &pound$price </td>
                                         <td class='tdQty'> $qty </td>

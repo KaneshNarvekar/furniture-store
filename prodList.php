@@ -148,7 +148,7 @@
                 </div>
                 
                 <div id="paginationBoxDiv">
-                    <div id="paginationDiv"><?php echo pagination($statement,$limit,$page, "?prodType=$prodType&"); ?></div>
+                    <div id="paginationDiv"><?php echo pagination($statement,$limit,$page, "?prodType=$prodType&amp;"); ?></div>
                 </div>
             </div>
 <!--///////////////////////////////END OF PRODUCT LIST //////////////////////-->

@@ -116,18 +116,18 @@
 
         <div id="indexBoxDiv1">
             <div id="imgSlides">
-                <img class="imgFirst" src="css/images/imgCenter1W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-                <img class="imgOthers" src="css/images/imgCenter2W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-                <img class="imgOthers" src="css/images/imgCenter3W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-                <img class="imgOthers" src="css/images/imgCenter4W650xH366.jpg" width="650" height="366" alt="centerImage"/>
-                <img class="imgOthers" src="css/images/imgCenter5W650xH366.jpg" width="650" height="366" alt="centerImage"/>
+                <img class="imgFirst" src="css/images/imgCenter1W650xH366.jpg" width="650" height="366" alt=""/>
+                <img class="imgOthers" src="css/images/imgCenter2W650xH366.jpg" width="650" height="366" alt=""/>
+                <img class="imgOthers" src="css/images/imgCenter3W650xH366.jpg" width="650" height="366" alt=""/>
+                <img class="imgOthers" src="css/images/imgCenter4W650xH366.jpg" width="650" height="366" alt=""/>
+                <img class="imgOthers" src="css/images/imgCenter5W650xH366.jpg" width="650" height="366" alt=""/>
             </div>
 
             <ul id="ulThumbs">
                 <li><a href="#"><img src="css/images/imgThumb1W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
-                <li><a class="middleThumb" href="#"><img src="css/images/imgThumb2W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
-                <li><a class="middleThumb" href="#"><img src="css/images/imgThumb3W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
-                <li><a class="middleThumb" href="#"><img src="css/images/imgThumb4W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
+                <li><a class="middleThumb" href="#"><img src="css/images/imgThumb2W116xH65.jpg" width="116" height="65" alt=""/></a></li>
+                <li><a class="middleThumb" href="#"><img src="css/images/imgThumb3W116xH65.jpg" width="116" height="65" alt=""/></a></li>
+                <li><a class="middleThumb" href="#"><img src="css/images/imgThumb4W116xH65.jpg" width="116" height="65" alt=""/></a></li>
                 <li><a href="#"><img src="css/images/imgThumb5W116xH65.jpg" width="116" height="65" alt="thumbImage"/></a></li>
             </ul>
         </div>
@@ -146,15 +146,15 @@
 
                 <div id="featuredSlides">
                     <div class="slide">
-                        <a href="prodInfo.php?prodId=bed04&amp;type=bed"> <img src="css/images/bed/bed4.jpg" width="158" height="158" alt="centerImage"/> </a>
-                        <a href="prodInfo.php?prodId=bed08&amp;type=bed"> <img src="css/images/bed/bed8.jpg" width="158" height="158" alt="centerImage"/> </a>
-                        <a href="prodInfo.php?prodId=bed03&amp;type=bed"> <img src="css/images/bed/bed3.jpg" width="158" height="158" alt="centerImage"/> </a>
+                        <a href="prodInfo.php?prodId=bed04&amp;type=bed"> <img src="css/images/bed/bed4.jpg" width="158" height="158" alt=""/> </a>
+                        <a href="prodInfo.php?prodId=bed08&amp;type=bed"> <img src="css/images/bed/bed8.jpg" width="158" height="158" alt=""/> </a>
+                        <a href="prodInfo.php?prodId=bed03&amp;type=bed"> <img src="css/images/bed/bed3.jpg" width="158" height="158" alt=""/> </a>
                     </div>
                     
                     <div class="slide">
-                        <a href="prodInfo.php?prodId=chair01&amp;type=chair">  <img src="css/images/chair/chair1.jpg" width="158" height="158" alt="centerImage"/> </a>
-                        <a href="prodInfo.php?prodId=chair02&amp;type=chair">  <img src="css/images/chair/chair2.jpg" width="158" height="158" alt="centerImage"/> </a>
-                        <a href="prodInfo.php?prodId=chair03&amp;type=chair">  <img src="css/images/chair/chair3.jpg" width="158" height="158" alt="centerImage"/> </a>
+                        <a href="prodInfo.php?prodId=chair01&amp;type=chair">  <img src="css/images/chair/chair1.jpg" width="158" height="158" alt=""/> </a>
+                        <a href="prodInfo.php?prodId=chair02&amp;type=chair">  <img src="css/images/chair/chair2.jpg" width="158" height="158" alt=""/> </a>
+                        <a href="prodInfo.php?prodId=chair03&amp;type=chair">  <img src="css/images/chair/chair3.jpg" width="158" height="158" alt=""/> </a>
                     </div>
                 </div> 
             </div>

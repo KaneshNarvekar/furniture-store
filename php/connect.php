@@ -1,6 +1,8 @@
 <?php
-    $connection = mysql_connect("localhost", "21174777", "21174777");
+    $connection = mysqli_connect("localhost", "dava", "password");
     if (!$connection) die("<ERROR: Cannot connect to database>");
-    $database = mysql_select_db("21174777");
+    $database = mysqli_select_db($connection, "projects");
     if (!$database) die("<ERROR:Cannot select database>");
+
+    
 ?>

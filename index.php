@@ -146,15 +146,15 @@
 
                 <div id="featuredSlides">
                     <div class="slide">
-                        <a href="prodInfo.php?prodId=bed04&amp;type=bed"> <img src="css/images/bed/bed4.jpg" width="158" height="158" alt=""/> </a>
-                        <a href="prodInfo.php?prodId=bed08&amp;type=bed"> <img src="css/images/bed/bed8.jpg" width="158" height="158" alt=""/> </a>
-                        <a href="prodInfo.php?prodId=bed03&amp;type=bed"> <img src="css/images/bed/bed3.jpg" width="158" height="158" alt=""/> </a>
+                        <a href="prodInfo.php?prodId=04&amp;type=bed"> <img src="css/images/bed/bed4.jpg" width="158" height="158" alt=""/> </a>
+                        <a href="prodInfo.php?prodId=08&amp;type=bed"> <img src="css/images/bed/bed8.jpg" width="158" height="158" alt=""/> </a>
+                        <a href="prodInfo.php?prodId=03&amp;type=bed"> <img src="css/images/bed/bed3.jpg" width="158" height="158" alt=""/> </a>
                     </div>
                     
                     <div class="slide">
-                        <a href="prodInfo.php?prodId=chair01&amp;type=chair">  <img src="css/images/chair/chair1.jpg" width="158" height="158" alt=""/> </a>
-                        <a href="prodInfo.php?prodId=chair02&amp;type=chair">  <img src="css/images/chair/chair2.jpg" width="158" height="158" alt=""/> </a>
-                        <a href="prodInfo.php?prodId=chair03&amp;type=chair">  <img src="css/images/chair/chair3.jpg" width="158" height="158" alt=""/> </a>
+                        <a href="prodInfo.php?prodId=13&amp;type=chair">  <img src="css/images/chair/chair1.jpg" width="158" height="158" alt=""/> </a>
+                        <a href="prodInfo.php?prodId=14&amp;type=chair">  <img src="css/images/chair/chair2.jpg" width="158" height="158" alt=""/> </a>
+                        <a href="prodInfo.php?prodId=15&amp;type=chair">  <img src="css/images/chair/chair3.jpg" width="158" height="158" alt=""/> </a>
                     </div>
                 </div> 
             </div>

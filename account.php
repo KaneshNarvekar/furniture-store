@@ -158,10 +158,10 @@
                         /////////////////// QUERY EMAIL EXISTS ? ///////////////
                         $currentEmail = $_SESSION["customer"]["email"];
                         
-                        $query = "SELECT * FROM customers where email = '$postEmail' and email != '$currentEmail'";   
-                        $resultSet = mysql_query($query);
+                        $query = "SELECT * FROM customer where email = '$postEmail' and email != '$currentEmail'";   
+                        $resultSet = mysqli_query($connection, $query);
                         if (!$resultSet) die("<ERROR: Cannot execute $query>");
-                        $fetchedRow = mysql_fetch_assoc($resultSet);
+                        $fetchedRow = mysqli_fetch_assoc($resultSet);
                         if ($fetchedRow != null)
                         {
                             $errorMessage = "ERROR: Email you want to change is already registered with another account.";
@@ -170,7 +170,7 @@
                         {
                             $salt= "*@!";
                             $hashedPwd = md5($salt.$pwd.$salt);
-                            $createQuery = "UPDATE customers 
+                            $createQuery = "UPDATE customer
                                              SET firstName = '$firstName', 
                                                  lastName = '$lastName',
                                                  email = '$postEmail', 
@@ -179,7 +179,7 @@
                                                  postCode = '$postCode', 
                                                  cardNo = '$cardNo'
                                                  where email = '$currentEmail'";
-                            $createResult = mysql_query($createQuery);
+                            $createResult = mysqli_query($connection, $createQuery);
                             if (!$createResult) die("<ERROR: Cannot execute $createQuery>");
                             $tempName = $firstName." ".$lastName;
                             $_SESSION["customer"]["name"] = $tempName;

@@ -1,7 +1,8 @@
 <?php
-   function pagination($query, $per_page = 10,$page = 1, $url = '?'){
+   function pagination($query, $per_page = 10,$page = 1, $url = '?', $connection){
         $query = "SELECT COUNT(*) as `num` {$query}";
-    	$row = mysql_fetch_array(mysql_query($query));
+        $resultSet = mysqli_query($connection, $query);
+    	$row = mysqli_fetch_array($resultSet);
     	$total = $row['num'];
         $adjacents = "2"; 
 

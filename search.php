@@ -11,10 +11,10 @@
 
         include_once 'php/connect.php';
 
-        $query = "SELECT * FROM products where prodName = '$value'";
-        $resultSet = mysql_query($query);
+        $query = "SELECT * FROM product where prodName = '$value'";
+        $resultSet = mysqli_query($connection, $query);
         if (!$resultSet) die("<ERROR: Cannot execute $query>");
-        $fetchedRow = mysql_fetch_assoc($resultSet);
+        $fetchedRow = mysqli_fetch_assoc($resultSet);
 
         if ($fetchedRow != null)
         {
@@ -23,10 +23,10 @@
         }
         else
         {
-            $query = "SELECT * FROM products where prodId = '$value'";
-            $resultSet = mysql_query($query);
+            $query = "SELECT * FROM product where prodId = '$value'";
+            $resultSet = mysqli_query($connection, $query);
             if (!$resultSet) die("<ERROR: Cannot execute $query>");
-            $fetchedRow = mysql_fetch_assoc($resultSet);
+            $fetchedRow = mysqli_fetch_assoc($resultSet);
 
             if ($fetchedRow != null)
             {

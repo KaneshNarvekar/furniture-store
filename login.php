@@ -92,10 +92,10 @@
                     $hasPwd = $_POST["txtPwd"];
                     
                     /////////////////// QUERY EMAIL EXISTS ? ///////////////
-                    $query = "SELECT * FROM customers where email='$hasEmail'";   
-                    $resultSet = mysql_query($query);
+                    $query = "SELECT * FROM customer where email='$hasEmail'";   
+                    $resultSet = mysqli_query($connection, $query);
                     if (!$resultSet) die("<ERROR: Cannot execute $query>");
-                    $fetchedRow = mysql_fetch_assoc($resultSet);
+                    $fetchedRow = mysqli_fetch_assoc($resultSet);
                     /////////////////// END OF UERY EMAIL EXISTS ///////////
                     
                     if ($fetchedRow == null)
@@ -106,10 +106,10 @@
                     {
                         $salt = "*@!";
                         $hashedPwd = md5($salt.$hasPwd.$salt);
-                        $query = "SELECT * FROM customers where email='$hasEmail' and password = '$hashedPwd'";   
-                        $resultSet = mysql_query($query);
+                        $query = "SELECT * FROM customer where email='$hasEmail' and password = '$hashedPwd'";   
+                        $resultSet = mysqli_query($connection, $query);
                         if (!$resultSet) die("<ERROR: Cannot execute $query>");
-                        $fetchedRow = mysql_fetch_assoc($resultSet);
+                        $fetchedRow = mysqli_fetch_assoc($resultSet);
                         
                         if ($fetchedRow != null)
                         {
@@ -206,10 +206,10 @@
                     else
                     {
                         /////////////////// QUERY EMAIL EXISTS ? ///////////////
-                        $query = "SELECT * FROM customers where email='$email'";   
-                        $resultSet = mysql_query($query);
+                        $query = "SELECT * FROM customer where email='$email'";   
+                        $resultSet = mysqli_query($connection, $query);
                         if (!$resultSet) die("<ERROR: Cannot execute $query>");
-                        $fetchedRow = mysql_fetch_assoc($resultSet);
+                        $fetchedRow = mysqli_fetch_assoc($resultSet);
                         /////////////////// END OF UERY EMAIL EXISTS ///////////
 
                         if ($fetchedRow != null)
@@ -220,8 +220,9 @@
                         {
                             $salt = "*@!";
                             $hashedPassword = md5($salt.$pwd.$salt);
-                            $createQuery = "INSERT INTO customers VALUES ('$firstName', '$lastName', '$email', '$hashedPassword', '$address', '$postCode', '$cardNo')";
-                            $createResult = mysql_query($createQuery);
+                            $createQuery = "INSERT INTO customer(firstName, lastName, email, password, address, postCode, cardNo) 
+                                VALUES ('$firstName', '$lastName', '$email', '$hashedPassword', '$address', '$postCode', '$cardNo')";
+                            $createResult = mysqli_query($connection, $createQuery);
                             if (!$createResult) die("<ERROR: Cannot execute $createQuery>");
                             echo "  <script> 
                                         $(function() 

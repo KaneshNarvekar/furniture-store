@@ -149,10 +149,10 @@
                        </script>";
                 }
                 ///////////// SELECTING ITEM FROM DATABASE ///////////////
-                $query = "SELECT * FROM products where prodId='$prodId'";   
-                $resultSet = mysql_query($query);
+                $query = "SELECT * FROM product where prodId='$prodId'";   
+                $resultSet = mysqli_query($connection, $query);
                 if (!$resultSet) die("<ERROR: Cannot execute $query>");
-                $fetchedRow = mysql_fetch_assoc($resultSet);
+                $fetchedRow = mysqli_fetch_assoc($resultSet);
                 ///////////// END OF SELECTING ITEM FROM DATABASE ///////////////
                 if ($fetchedRow == null)    
                 {

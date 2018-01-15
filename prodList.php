@@ -106,11 +106,11 @@
                 $page = (int) (!isset($_GET["page"]) ? 1 : $_GET["page"]);
                 $limit = 9;
                 $startpoint = ($page * $limit) - $limit;
-                $statement = "FROM products where type='$prodType'";
-                $query = "SELECT * FROM products where type = '$prodType' LIMIT {$startpoint} , {$limit}";
-                $resultSet = mysql_query($query);
+                $statement = "FROM product where type='$prodType'";
+                $query = "SELECT * FROM product where type = '$prodType' LIMIT {$startpoint} , {$limit}";
+                $resultSet = mysqli_query($connection, $query);
                 if (!$resultSet) die("<ERROR: Cannot execute $query>");
-                $fetchedRow = mysql_fetch_row($resultSet);
+                $fetchedRow = mysqli_fetch_row($resultSet);
                 
                 if ($fetchedRow == null) // IF NULL THEN DIRECT TO PRODINFO.PHP   
                 {
@@ -135,7 +135,7 @@
                                 $price = $fetchedRow[5];
                                 $displayImage = "<img src='css/images/$prodType/$imageName' width='158' height='158' alt='tableImage'/>";
                                 echo " <td><a href='prodInfo.php?prodId=$id'> $displayImage <p>$name <span class='price'>&pound;$price</span></p></a></td> ";
-                                $fetchedRow = mysql_fetch_row($resultSet);
+                                $fetchedRow = mysqli_fetch_row($resultSet);
                             }
                         }
                         echo "</tr>";
@@ -148,7 +148,7 @@
                 </div>
                 
                 <div id="paginationBoxDiv">
-                    <div id="paginationDiv"><?php echo pagination($statement,$limit,$page, "?prodType=$prodType&amp;"); ?></div>
+                    <div id="paginationDiv"><?php echo pagination($statement,$limit,$page, "?prodType=$prodType&amp;", $connection); ?></div>
                 </div>
             </div>
 <!--///////////////////////////////END OF PRODUCT LIST //////////////////////-->

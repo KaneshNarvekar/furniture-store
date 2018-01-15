@@ -28,7 +28,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Furniture & House Decoration &#124; DAVA</title>
+        <title>Furniture &amp; House Decoration &#124; DAVA</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <link href="css/home.css" rel="stylesheet" type="text/css"/>

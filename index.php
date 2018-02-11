@@ -175,7 +175,7 @@
 
         <div id="footerDiv">
             <p>
-                <a href="#">Page Last Updated: December 31, 2012</a>
+                <a href="#">Page Last Updated: February 11, 2018</a>
                 &#124;
                 <a href="#">Page Editor: Davaasuren Dorjdagva</a>
                 &#124;
@@ -183,7 +183,7 @@
                 &#124;
                 <a href="#">Privacy Policy</a>
                 &#124;
-                <a href="#">&copy;2013 All Rights Reserved.</a>
+                <a href="#">&copy;2018 All Rights Reserved.</a>
             </p>
         </div>
     </div>
